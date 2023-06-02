@@ -1,0 +1,39 @@
+.nav-logo {
+    position: relative;
+    width: 50px;
+    height: 60px;
+    display: inline-block;
+}
+.nav-logo img {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    height: 100%;
+    width: auto !important;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.classy-nav-container .classy-navbar .classynav ul li.cn-dropdown-item ul li a, .classy-nav-container .classy-navbar .classynav ul li.megamenu-item ul li a {
+    font-size: 14px;
+    text-transform: capitalize;
+    height: auto;
+    line-height: 1.2;
+    padding: 10px 20px !important;
+    color: #252525;
+    word-break: break-word;
+}
+.classynav ul li.cn-dropdown-item ul li {
+    word-break: break-all;
+}
+.custom-header .nav-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+.custom-header .nav-brand span {
+    color: #fff;
+    line-height: 1;
+    padding: 0 15px;
+}

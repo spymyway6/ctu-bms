@@ -1,0 +1,17 @@
+.transaction-list .tran-text {
+    width: 400px;
+}
+#sidebar-menu > ul > li > a.active {
+    background: #f4f8fb !important;
+    border-left: 3px solid #f05050;
+    color: #f05050 !important;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo span {
+    position: relative;
+    width: 100%;
+}
