@@ -21,7 +21,7 @@
 
 <!-- Header Area Start -->
 <header class="header-area">
-	<!-- Main Header Start -->
+<!-- Main Header Start -->
 	<div class="main-header-area">
 		<div class="classy-nav-container breakpoint-off">
 			<div class="container">
