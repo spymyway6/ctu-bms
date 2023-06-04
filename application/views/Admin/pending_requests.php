@@ -59,7 +59,7 @@
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['category']?></td>
                                                         <td><?=$col['publish_date']?></td>
-                                                        <td><?=$col['created_at']?></td>
+                                                        <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
                                                         <td class="text-center"><?=$col['available']?></td>
                                                         <td class="text-center"><?=$col['unavailable']?></td>
                                                         <td class="text-center"><?=($col['request_type'] == 1) ? '<span class="badge badge-info">Borrow</span>' : '<span class="badge badge-primary">Reserve</span>'; ?></td>

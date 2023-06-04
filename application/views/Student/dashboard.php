@@ -25,28 +25,28 @@
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-my-library-books text-primary"></i>
-                                    <h2 class="m-0 text-dark counter font-600">50568</h2>
+                                    <h2 class="m-0 text-dark counter font-600"><?=$count_request['count_books']?></h2>
                                     <div class="text-muted m-t-5">Total Collections</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
-                                    <i class="md md-account-child text-pink"></i>
-                                    <h2 class="m-0 text-dark counter font-600">1256</h2>
-                                    <div class="text-muted m-t-5">Total Students</div>
+                                    <i class="md md-book text-pink"></i>
+                                    <h2 class="m-0 text-dark counter font-600"><?=$count_request['count_pending']?></h2>
+                                    <div class="text-muted m-t-5">Total Pending</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-book text-info"></i>
-                                    <h2 class="m-0 text-dark counter font-600">18</h2>
+                                    <h2 class="m-0 text-dark counter font-600"><?=$count_request['count_borrowed']?></h2>
                                     <div class="text-muted m-t-5">Total Borrowed Books</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-access-alarms text-danger"></i>
-                                    <h2 class="m-0 text-dark counter font-600">8564</h2>
+                                    <h2 class="m-0 text-dark counter font-600"><?=$count_request['count_expired']?></h2>
                                     <div class="text-muted m-t-5">Expired</div>
                                 </div>
                             </div>

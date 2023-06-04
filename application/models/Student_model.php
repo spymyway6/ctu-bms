@@ -4,11 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Student_model extends CI_Model {
 
     public function count_all_request($id){
+        $toDate = date('Y-m-d');
         $get_data = array(
             'count_pending' => $this->db->where('user_id', $id)->where('request_status', 0)->from("issue_book")->count_all_results(),
             'count_borrowed' => $this->db->where('user_id', $id)->where('request_status', 1)->where('request_type', 1)->from("issue_book")->count_all_results(),
             'count_reserved' => $this->db->where('user_id', $id)->where('request_status', 1)->where('request_type', 2)->from("issue_book")->count_all_results(),
             'count_history' => $this->db->where('user_id', $id)->where('request_status', 3)->from("issue_book")->count_all_results(),
+            'count_users'    => $this->db->from("users")->count_all_results(),
+            'count_expired' => $this->db->where('STR_TO_DATE(expiry_date, "%Y-%m-%d") <', $toDate)->from("issue_book")->count_all_results(),
+            'count_books'    => $this->db->from("books")->count_all_results(),
         );
 
         $data = array(
@@ -16,6 +20,9 @@ class Student_model extends CI_Model {
             'count_borrowed' => ($get_data['count_borrowed'] > 99) ? '99+' : $get_data['count_borrowed'],
             'count_reserved' => ($get_data['count_reserved'] > 99) ? '99+' : $get_data['count_reserved'],
             'count_history' => $get_data['count_history'],
+            'count_expired' => $get_data['count_expired'],
+            'count_books'    => $get_data['count_books'],
+            'count_users'    => $get_data['count_users'],
         );
 
         return $data;

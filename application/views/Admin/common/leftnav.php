@@ -28,7 +28,7 @@
                     <a href="<?=base_url();?>admin/history" class="waves-effect <?=($is_page=='admin/history') ? 'active' : ''; ?>"><i class="ti-time"></i> <span> History</span> </a>
                 </li>
                 <li>
-                    <a href="<?=base_url();?>admin/overdue_lists" class="waves-effect <?=($is_page=='admin/overdue_lists') ? 'active' : ''; ?>"><i class="ti-flag"></i> <span> Overdue Lists </span> </a>
+                    <a href="<?=base_url();?>admin/overdue_lists" class="waves-effect <?=($is_page=='admin/overdue_lists') ? 'active' : ''; ?>"><i class="ti-flag"></i><?=($count_request['count_expired']) ? '<span class="label label-danger pull-right">'.$count_request['count_expired'].'</span>' : ''; ?> <span> Overdue Lists </span> </a>
                 </li>
                 <li>
                     <a href="<?=base_url();?>admin/teachers" class="waves-effect <?=($is_page=='admin/teachers') ? 'active' : ''; ?>"><i class="ti-id-badge"></i> <span> Teachers</span> </a>
