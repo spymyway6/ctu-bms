@@ -55,21 +55,21 @@
 										<li><a href="javascript:;">New Aquisition</a></li>
 									</ul>
 								</li>
-								<li class="<?=$is_page == "library_policy" ? 'active' : ''?>"><a href="javascript:;">Library Policies</a>
+								<li class="<?=$is_page == "general_rules" ? 'active' : ''?>"><a href="javascript:;">Library Policies</a>
 									<ul class="dropdown">
-										<li><a href="<?=base_url();?>/library-policy">General Rules</a></li>
-										<li><a href="javascript:;">Borrowing Policy</a></li>
+										<li><a href="<?=base_url();?>/general-rules">General Rules</a></li>
+										<li><a href="<?=base_url();?>/borrowing-policy">Borrowing Policy</a></li>
 									</ul>
 								</li>
-								<li><a href="javascript:;">Library Services</a>
+								<li><a href="<?=$is_page == "circulation_services" ? 'active' : ''?>">Library Services</a>
 									<ul class="dropdown">
-										<li><a href="javascript:;">Circulation Service</a></li>
-										<li><a href="javascript:;">Library Orientation and Instruction</a></li>
-										<li><a href="javascript:;">Document Delivery (DD)</a></li>
-										<li><a href="javascript:;">Inter-Library/Referral Services</a></li>
-										<li><a href="javascript:;">REFERENCE & INFORMATION Services</a></li>
-										<li><a href="javascript:;">Scanning, Photocopy and Printing Services</a></li>
-										<li><a href="javascript:;">Internet Access Services</a></li>
+										<li><a href="<?=base_url();?>/circulation-services">Circulation Service</a></li>
+										<li><a href="<?=base_url();?>/library-orientation">Library Orientation and Instruction</a></li>
+										<li><a href="<?=base_url();?>/document-delivery">Document Delivery (DD)</a></li>
+										<li><a href="<?=base_url();?>/inter-library">Inter-Library/Referral Services</a></li>
+										<li><a href="<?=base_url();?>/information-services">REFERENCE & INFORMATION Services</a></li>
+										<li><a href="<?=base_url();?>/printing-services">Scanning, Photocopy and Printing Services</a></li>
+										<li><a href="<?=base_url();?>/internet-access">Internet Access Services</a></li>
 										<li><a href="javascript:;">Research Extension</a></li>
 									</ul>
 								</li>
