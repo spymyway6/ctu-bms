@@ -3,6 +3,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_model extends CI_Model {
 
+    public function count_all_request(){
+        $get_data = array(
+            'count_pending' => $this->db->where('request_status', 0)->from("issue_book")->count_all_results(),
+            'count_borrowed' => $this->db->where('request_status', 1)->where('request_type', 1)->from("issue_book")->count_all_results(),
+            'count_reserved' => $this->db->where('request_status', 1)->where('request_type', 2)->from("issue_book")->count_all_results(),
+            'count_history' => $this->db->where('request_status', 3)->from("issue_book")->count_all_results(),
+        );
+        $data = array(
+            'count_pending' => ($get_data['count_pending'] > 99) ? '99+' : $get_data['count_pending'],
+            'count_borrowed' => ($get_data['count_borrowed'] > 99) ? '99+' : $get_data['count_borrowed'],
+            'count_reserved' => ($get_data['count_reserved'] > 99) ? '99+' : $get_data['count_reserved'],
+            'count_history' => $get_data['count_history'],
+        );
+        return $data;
+    }
+
 	public function save_the_collection_model($form_data, $imgName){
         $data = array(
             'book_name'      => $form_data['book_name'],
@@ -34,6 +50,99 @@ class Admin_model extends CI_Model {
         }
     }
 
+    public function save_the_student_model($form_data, $imgName){
+        $data = array(
+            'firstname'  => $form_data['firstname'],
+            'lastname'   => $form_data['lastname'],
+            'username'   => $form_data['username'],
+            'email'      => $form_data['email'],
+            'contact'    => $form_data['contact'],
+            'status'     => $form_data['status'],
+            'department' => $form_data['department'],
+            'address'    => $form_data['address'],
+            'role'       => 2,
+        );
+
+        if($imgName){
+            $data['pic'] = $imgName;
+        }
+
+        if($form_data['password']){
+            $data['password'] = md5($form_data['password']);
+        }
+
+        if($form_data['user_id']){
+            $this->db->where('id', $form_data['user_id']);
+            $result = $this->db->update('users', $data);
+            return ($result) ? true : false;
+        }else{
+            $this->db->insert('users', $data);
+            return true;
+        }
+    }
+
+    public function save_the_user_model($form_data, $imgName){
+        $data = array(
+            'firstname'  => $form_data['firstname'],
+            'lastname'   => $form_data['lastname'],
+            'username'   => $form_data['username'],
+            'email'      => $form_data['email'],
+            'contact'    => $form_data['contact'],
+            'status'     => $form_data['status'],
+            'department' => $form_data['department'],
+            'address'    => $form_data['address'],
+            'role'       => 1,
+        );
+
+        if($imgName){
+            $data['pic'] = $imgName;
+        }
+
+        if($form_data['password']){
+            $data['password'] = md5($form_data['password']);
+        }
+
+        if($form_data['user_id']){
+            $this->db->where('id', $form_data['user_id']);
+            $result = $this->db->update('users', $data);
+            return ($result) ? true : false;
+        }else{
+            $this->db->insert('users', $data);
+            return true;
+        }
+    }
+
+    public function save_the_teacher_model($form_data, $imgName){
+        $data = array(
+            'firstname'  => $form_data['firstname'],
+            'lastname'   => $form_data['lastname'],
+            'username'   => $form_data['username'],
+            'email'      => $form_data['email'],
+            'contact'    => $form_data['contact'],
+            'status'     => $form_data['status'],
+            'department' => $form_data['department'],
+            'address'    => $form_data['address'],
+            'role'       => 3,
+        );
+
+        if($imgName){
+            $data['pic'] = $imgName;
+        }
+
+        if($form_data['password']){
+            $data['password'] = md5($form_data['password']);
+        }
+
+        if($form_data['user_id']){
+            $this->db->where('id', $form_data['user_id']);
+            $result = $this->db->update('users', $data);
+            return ($result) ? true : false;
+        }else{
+            $this->db->insert('users', $data);
+            return true;
+        }
+    }
+
     public function get_collections(){
         $this->db->select('*')->from('books');
         return $this->db->get()->result_array();
@@ -41,6 +150,21 @@ class Admin_model extends CI_Model {
 
     public function get_specific_collection($id){
         $this->db->select('*')->from('books')->where('id', $id);
+        return $this->db->get()->result_array();
+    }
+
+    public function get_specific_student($id){
+        $this->db->select('*')->from('users')->where('id', $id);
+        return $this->db->get()->result_array();
+    }
+
+    public function get_specific_user($id){
+        $this->db->select('*')->from('users')->where('id', $id);
+        return $this->db->get()->result_array();
+    }
+
+    public function get_specific_teacher($id){
+        $this->db->select('*')->from('users')->where('id', $id);
         return $this->db->get()->result_array();
     }
 
@@ -81,8 +205,22 @@ class Admin_model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
-    public function set_request_status_model($form_data){
+    public function get_teachers(){
+        $this->db->select('*')->from('users')->where('role', 3);
+        return $this->db->get()->result_array();
+    }
 
+    public function get_students(){
+        $this->db->select('*')->from('users')->where('role', 2);
+        return $this->db->get()->result_array();
+    }
+
+    public function get_users(){
+        $this->db->select('*')->from('users')->where('role', 1);
+        return $this->db->get()->result_array();
+    }
+
+    public function set_request_status_model($form_data){
         if($form_data['request_type'] == 1){
             if($form_data['status'] == 1){
                 $data = array(
@@ -152,5 +290,34 @@ class Admin_model extends CI_Model {
         $this->db->update('books', $books_data);
 
         return true;
+    }
+
+    public function get_my_profile($id){
+        $this->db->select('*')->from('users')->where('id', $id);
+        return $this->db->get()->row_array();
+    }
+
+    public function save_profile_settings_model($form_data, $imgName){
+        $data = array(
+            'firstname'  => $form_data['firstname'],
+            'lastname'   => $form_data['lastname'],
+            'username'   => $form_data['username'],
+            'email'      => $form_data['email'],
+            'contact'    => $form_data['contact'],
+            'department' => $form_data['department'],
+            'address'    => $form_data['address'],
+        );
+
+        if($imgName){
+            $data['pic'] = $imgName;
+        }
+
+        if($form_data['password']){
+            $data['password'] = md5($form_data['password']);
+        }
+
+        $this->db->where('id', $this->session->userdata('id'));
+        $result = $this->db->update('users', $data);
+        return ($result) ? true : false;
     }
 }   

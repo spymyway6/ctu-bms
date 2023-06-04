@@ -24,14 +24,14 @@
                             <div class="col-sm-12">
                                 <div class="card-box">
                                     <?php if($this->session->userdata('role')==1 || strstr($this->session->userdata('permission'),'create_member')){ ?>
-                                        <a href="javascript:;" class="btn btn-success waves-effect waves-light btn-sm pull-right" onclick="addNewStudent()"><i class="fa fa-plus"></i> Add New Students</a>
+                                        <a href="javascript:;" class="btn btn-success waves-effect waves-light btn-sm pull-right" onclick="addNewTeacher()"><i class="fa fa-plus"></i> Add New Teacher</a>
                                     <?php } ?>
-                                    <h4 class="m-t-0 header-title"><b>Students Lists</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Teachers Lists</b></h4>
                                     <p class="text-muted m-b-30 font-13">
-                                        List of all your the students registered.
+                                        List of all your the teachers registered.
                                     </p>
                                     <div class="tbl-responsive">
-                                        <table id="studentsTable" class="table table-hover table-bordered table-actions-bar m-b-0">
+                                        <table id="teachersTable" class="table table-hover table-bordered table-actions-bar m-b-0">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">Image</th>
@@ -47,7 +47,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach($students as $col){ ?>
+                                                <?php foreach($teachers as $col){ ?>
                                                     <tr>
                                                         <td>
                                                             <a href="<?=($col['pic']) ? base_url().'assets/uploads/users/'.$col['pic'] : base_url().'assets/uploads/default.png';?>" class="image-popup">
@@ -68,7 +68,7 @@
                                                             <div class="btn-group">
                                                                 <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
                                                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                                    <li><a href="javascript:;" onclick="editStudent(<?=$col['id']?>)">Edit</a></li>
+                                                                    <li><a href="javascript:;" onclick="editTeacher(<?=$col['id']?>)">Edit</a></li>
                                                                 </ul>
                                                             </div>
                                                         </td>
@@ -83,14 +83,14 @@
                     </div> <!-- container -->
 
                     <!-- Modal -->
-                    <div id="addNewStudentModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div id="addNewTeacherModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog modal-lg"> 
                             <div class="modal-content"> 
                                 <div class="modal-header"> 
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                                    <h4 class="modal-title" id="form-title"><i class="fa fa-user-plus"></i> Add New Student</h4> 
+                                    <h4 class="modal-title" id="form-title"><i class="fa fa-user-plus"></i> Add New Teacher</h4> 
                                 </div> 
-                                <form action="<?=base_url();?>admin/add_this_student" data-parsley-validate novalidate method="POST" enctype="multipart/form-data" id="addNewStudentForm">
+                                <form action="<?=base_url();?>admin/add_this_teacher" data-parsley-validate novalidate method="POST" enctype="multipart/form-data" id="addNewTeacherForm">
                                     <div class="modal-body"> 
                                         <div class="row">
                                             <div class="col-md-12">
@@ -172,7 +172,7 @@
                                         <input type="hidden" id="user_id" name="user_id"> 
                                     </div>
                                     <div class="modal-footer"> 
-                                        <button type="button" class="btn btn-success waves-effect waves-light saveBtn" onclick="saveStudent(this)"><i class="fa fa-user-plus"></i> Save</button> 
+                                        <button type="button" class="btn btn-success waves-effect waves-light saveBtn" onclick="saveTeacher(this)"><i class="fa fa-user-plus"></i> Save</button> 
                                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button> 
                                     </div> 
                                 </form>
@@ -194,7 +194,7 @@
         <?php $this->load->view('Admin/common/js');?>
         <script>
             $(document).ready(function() {
-                $('#studentsTable').DataTable({
+                $('#teachersTable').DataTable({
                     "order": [[ 6, "desc" ]]
                 });
                 $('.image-popup').magnificPopup({

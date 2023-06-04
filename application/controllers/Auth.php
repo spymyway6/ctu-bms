@@ -34,7 +34,6 @@ class Auth extends CI_Controller {
                 else{
                     redirect('student/dashboard');
                 }
-               
 			} else{
                 $this->session->set_flashdata('error_msg', 'Incorrect email or password.');
                 redirect('login');

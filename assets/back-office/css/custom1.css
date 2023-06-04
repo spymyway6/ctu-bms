@@ -15,3 +15,6 @@
     position: relative;
     width: 100%;
 }
+.bg-custom {
+    background-color: #be5f5f !important;
+}

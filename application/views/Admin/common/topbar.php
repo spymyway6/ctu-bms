@@ -32,7 +32,7 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a onclick="profile_settings(<?=$this->session->userdata('id')?>)" href="javascript:;" class="waves-effect"><i class="ti-settings m-r-5"></i>Profile Settings</a></li>
+                            <li><a href="<?=base_url();?>admin/profile_settings" class="waves-effect"><i class="ti-settings m-r-5"></i>Profile Settings</a></li>
                             <li><a href="javascript:;" onclick="logout()"><i class="ti-power-off m-r-5"></i> Logout</a></li>
                         </ul>
                     </li>

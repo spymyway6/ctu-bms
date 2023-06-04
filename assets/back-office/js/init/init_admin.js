@@ -1,9 +1,49 @@
+$(document).ready(function() {
+    $('.image-popup').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        mainClass: 'mfp-fade',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+        }
+    });
+});
+
 function addNewCollection(){
     $('#addNewCollectionModal').modal('show');
     $('#addNewCollectionForm')[0].reset();
     $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
     var default_img = base_url + 'assets/uploads/default.png';
     $('#img-profile').attr('src', default_img);
+}
+
+function addNewStudent(){
+    $('#addNewStudentModal').modal('show');
+    $('#addNewStudentForm')[0].reset();
+    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+    var default_img = base_url + 'assets/uploads/default.png';
+    $('#img-profile').attr('src', default_img);
+    $('#password').attr('required', 'required');
+}
+
+function addNewTeacher(){
+    $('#addNewTeacherModal').modal('show');
+    $('#addNewTeacherForm')[0].reset();
+    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+    var default_img = base_url + 'assets/uploads/default.png';
+    $('#img-profile').attr('src', default_img);
+    $('#password').attr('required', 'required');
+}
+
+function addNewUser(){
+    $('#addNewUserModal').modal('show');
+    $('#addNewUserForm')[0].reset();
+    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+    var default_img = base_url + 'assets/uploads/default.png';
+    $('#img-profile').attr('src', default_img);
+    $('#password').attr('required', 'required');
 }
 
 function saveCollection(e){
@@ -27,7 +67,7 @@ function saveCollection(e){
                     $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
                     setTimeout(()=>{
                         location.reload();
-                    }, 2000)
+                    }, 1000)
                 }else{
                     swal("Ooops!", "A problem occured. Please try again..", "error");
                 }
@@ -117,7 +157,6 @@ var readURL = (input)=> {
     }   
 }
 
-
 function setRequestStaus(id, book_id, status, statusName, availableQTY, unavailableQTY, request_type){
     swal({
         title: `${statusName} request?`,
@@ -145,7 +184,7 @@ function setRequestStaus(id, book_id, status, statusName, availableQTY, unavaila
                 if(res.status == true){
                     setTimeout(()=>{
                         location.reload();
-                    }, 2000);
+                    }, 1000);
                     swal("Success!", "Reloading page...", "success");
                 }else{
                     swal("Ooops!", "A problem occured. Please try again..", "error");
@@ -158,7 +197,6 @@ function setRequestStaus(id, book_id, status, statusName, availableQTY, unavaila
         });
     });
 }
-
 
 function returnCollection(issue_id, book_id, availableQTY, unavailableQTY){
     swal({
@@ -185,7 +223,7 @@ function returnCollection(issue_id, book_id, availableQTY, unavailableQTY){
                 if(res.status == true){
                     setTimeout(()=>{
                         location.reload();
-                    }, 2000);
+                    }, 1000);
                     swal("Success!", "Reloading page...", "success");
                 }else{
                     swal("Ooops!", "A problem occured. Please try again..", "error");
@@ -224,7 +262,7 @@ function markAsBorrowed(issue_id, book_id, availableQTY, unavailableQTY){
                 if(res.status == true){
                     setTimeout(()=>{
                         location.reload();
-                    }, 2000);
+                    }, 1000);
                     swal("Success!", "Reloading page...", "success");
                 }else{
                     swal("Ooops!", "A problem occured. Please try again..", "error");
@@ -236,4 +274,281 @@ function markAsBorrowed(issue_id, book_id, availableQTY, unavailableQTY){
             },
         });
     });
+}
+
+/* Students Functions */
+function saveStudent(e){
+    $('#addNewStudentForm').parsley().validate();
+    if ($('#addNewStudentForm').parsley().isValid()) {
+        $('.saveBtn').html('<i class="fa fa-spin fa-spinner"></i> Saving');
+        var form = document.getElementById("addNewStudentForm");
+        var formData = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: base_url+'admin/save_the_student',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (resp) => {
+                var res = JSON.parse(resp);
+                console.log(res);
+                if(res.status == true){
+                    swal("Saved!", "Student saved successfully", "success");
+                    $('#addNewStudentModal').modal('hide');
+                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    setTimeout(()=>{
+                        location.reload();
+                    }, 1000)
+                }else{
+                    swal("Ooops!", "A problem occured. Please try again..", "error");
+                }
+            },
+            error: (res) => {
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+                console.log(res);
+            },
+        });
+    }
+}
+
+function editStudent(id){
+    $('#addNewStudentModal').modal('show');
+    $('#addNewStudentForm').addClass('d-none');
+    $('.loader').removeClass('d-none');
+
+    $.ajax({
+        type: "POST",
+        url: base_url+'admin/get_the_student',
+        data: {
+            id: id
+        },
+        success: (resp) => {
+            var res = JSON.parse(resp);
+            console.log(res);
+            if(res.status == true){
+                var default_img = base_url + 'assets/uploads/default.png';
+                $('#firstname').val(res.data.firstname);
+                $('#lastname').val(res.data.lastname);
+                $('#username').val(res.data.username);
+                $('#email').val(res.data.email);
+                $('#password').removeAttr('required');
+                $('#contact').val(res.data.contact);
+                $('#user_id').val(res.data.id);
+                $('#status').val(res.data.status);
+                $('#department').val(res.data.department);
+                $('#address').val(res.data.address);
+
+                if(res.data.pic){
+                    $('#img-profile').attr('src', base_url + 'assets/uploads/users/'+res.data.pic);
+                }else{
+                    $('#img-profile').attr('src', default_img);
+                }
+
+                $('#addNewStudentForm').removeClass('d-none');
+                $('.loader').addClass('d-none');
+            }else{
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+            }
+        },
+        error: (res) => {
+            swal("Ooops!", "A problem occured. Please try again..", "error");
+            console.log(res);
+        },
+    });
+}
+
+/* Users Functions */
+function saveUser(e){
+    $('#addNewUserForm').parsley().validate();
+    if ($('#addNewUserForm').parsley().isValid()) {
+        $('.saveBtn').html('<i class="fa fa-spin fa-spinner"></i> Saving');
+        var form = document.getElementById("addNewUserForm");
+        var formData = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: base_url+'admin/save_the_user',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (resp) => {
+                var res = JSON.parse(resp);
+                console.log(res);
+                if(res.status == true){
+                    swal("Saved!", "User saved successfully", "success");
+                    $('#addNewUserModal').modal('hide');
+                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    setTimeout(()=>{
+                        location.reload();
+                    }, 1000)
+                }else{
+                    swal("Ooops!", "A problem occured. Please try again..", "error");
+                }
+            },
+            error: (res) => {
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+                console.log(res);
+            },
+        });
+    }
+}
+
+function editUser(id){
+    $('#addNewUserModal').modal('show');
+    $('#addNewUserForm').addClass('d-none');
+    $('.loader').removeClass('d-none');
+
+    $.ajax({
+        type: "POST",
+        url: base_url+'admin/get_the_user',
+        data: {
+            id: id
+        },
+        success: (resp) => {
+            var res = JSON.parse(resp);
+            console.log(res);
+            if(res.status == true){
+                var default_img = base_url + 'assets/uploads/default.png';
+                $('#firstname').val(res.data.firstname);
+                $('#lastname').val(res.data.lastname);
+                $('#username').val(res.data.username);
+                $('#email').val(res.data.email);
+                $('#password').removeAttr('required');
+                $('#contact').val(res.data.contact);
+                $('#user_id').val(res.data.id);
+                $('#status').val(res.data.status);
+                $('#department').val(res.data.department);
+                $('#address').val(res.data.address); 
+
+                if(res.data.pic){
+                    $('#img-profile').attr('src', base_url + 'assets/uploads/users/'+res.data.pic);
+                }else{
+                    $('#img-profile').attr('src', default_img);
+                }
+
+                $('#addNewStudentForm').removeClass('d-none');
+                $('.loader').addClass('d-none');
+            }else{
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+            }
+        },
+        error: (res) => {
+            swal("Ooops!", "A problem occured. Please try again..", "error");
+            console.log(res);
+        },
+    });
+}
+
+/* Teachers Functions */
+function saveTeacher(e){
+    $('#addNewTeacherForm').parsley().validate();
+    if ($('#addNewTeacherForm').parsley().isValid()) {
+        $('.saveBtn').html('<i class="fa fa-spin fa-spinner"></i> Saving');
+        var form = document.getElementById("addNewTeacherForm");
+        var formData = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: base_url+'admin/save_the_teacher',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (resp) => {
+                var res = JSON.parse(resp);
+                console.log(res);
+                if(res.status == true){
+                    swal("Saved!", "Teacher saved successfully", "success");
+                    $('#addNewTeacherModal').modal('hide');
+                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    setTimeout(()=>{
+                        location.reload();
+                    }, 1000)
+                }else{
+                    swal("Ooops!", "A problem occured. Please try again..", "error");
+                }
+            },
+            error: (res) => {
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+                console.log(res);
+            },
+        });
+    }
+}
+
+function editTeacher(id){
+    $('#addNewTeacherModal').modal('show');
+    $('#addNewTeacherForm').addClass('d-none');
+    $('.loader').removeClass('d-none');
+
+    $.ajax({
+        type: "POST",
+        url: base_url+'admin/get_the_teacher',
+        data: {
+            id: id
+        },
+        success: (resp) => {
+            var res = JSON.parse(resp);
+            console.log(res);
+            if(res.status == true){
+                var default_img = base_url + 'assets/uploads/default.png';
+                $('#firstname').val(res.data.firstname);
+                $('#lastname').val(res.data.lastname);
+                $('#username').val(res.data.username);
+                $('#email').val(res.data.email);
+                $('#password').removeAttr('required');
+                $('#contact').val(res.data.contact);
+                $('#user_id').val(res.data.id);
+                $('#status').val(res.data.status);
+                $('#department').val(res.data.department);
+                $('#address').val(res.data.address); 
+
+                if(res.data.pic){
+                    $('#img-profile').attr('src', base_url + 'assets/uploads/users/'+res.data.pic);
+                }else{
+                    $('#img-profile').attr('src', default_img);
+                }
+
+                $('#addNewTeacherForm').removeClass('d-none');
+                $('.loader').addClass('d-none');
+            }else{
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+            }
+        },
+        error: (res) => {
+            swal("Ooops!", "A problem occured. Please try again..", "error");
+            console.log(res);
+        },
+    });
+}
+
+/* Students Functions */
+function saveProfileSettings(e){
+    $('#saveProfileForm').parsley().validate();
+    if ($('#saveProfileForm').parsley().isValid()) {
+        $('.saveBtn').html('<i class="fa fa-spin fa-spinner"></i> Saving');
+        var form = document.getElementById("saveProfileForm");
+        var formData = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: base_url+'admin/save_profile_settings',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (resp) => {
+                var res = JSON.parse(resp);
+                console.log(res);
+                if(res.status == true){
+                    swal("Saved!", "Profile saved successfully", "success");
+                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    setTimeout(()=>{
+                        location.reload();
+                    }, 1000)
+                }else{
+                    swal("Ooops!", "A problem occured. Please try again..", "error");
+                }
+            },
+            error: (res) => {
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+                console.log(res);
+            },
+        });
+    }
 }

@@ -83,6 +83,39 @@ class Admin extends CI_Controller {
         }
 	}
 
+    public function students(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			$data['is_page'] = 'admin/students';
+            $data['page_name'] = 'Students Lists';
+            $data['students'] = $this->admin_model->get_students();
+            $this->load->view('Admin/students', $data);
+		}else{
+            redirect('login');
+        }
+	}
+
+    public function teachers(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			$data['is_page'] = 'admin/teachers';
+            $data['page_name'] = 'Teachers Lists';
+            $data['teachers'] = $this->admin_model->get_teachers();
+            $this->load->view('Admin/teachers', $data);
+		}else{
+            redirect('login');
+        }
+	}
+
+    public function users(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			$data['is_page'] = 'admin/users';
+            $data['page_name'] = 'Librarians Lists';
+            $data['users'] = $this->admin_model->get_users();
+            $this->load->view('Admin/users', $data);
+		}else{
+            redirect('login');
+        }
+	}
+
     public function save_the_collection(){
         if($this->session->userdata('id') && $this->session->userdata('role')==1){
 			if($this->input->post()){
@@ -102,6 +135,170 @@ class Admin extends CI_Controller {
                     'status' => true,
                     'data' => [],
                     'message' => 'Book saved successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+
+    public function save_the_student(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $imgName = '';
+                if($this->input->post('img_data')){
+                    $img_data = $this->input->post('img_data');
+                    $target_path = "assets/uploads/users/";
+                    $imgName = 'p'.'_'.uniqid().".jpg"; 
+                    $data    = explode(',', $img_data);
+                    $decoded = base64_decode($data[1]);file_put_contents($target_path.$imgName, $decoded);
+                }
+                $data = $this->admin_model->save_the_student_model($this->input->post(), $imgName);
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => [],
+                    'message' => 'Student saved successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+
+    public function save_the_user(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $imgName = '';
+                if($this->input->post('img_data')){
+                    $img_data = $this->input->post('img_data');
+                    $target_path = "assets/uploads/users/";
+                    $imgName = 'p'.'_'.uniqid().".jpg"; 
+                    $data    = explode(',', $img_data);
+                    $decoded = base64_decode($data[1]);
+                    file_put_contents($target_path.$imgName, $decoded);
+                }
+                $data = $this->admin_model->save_the_user_model($this->input->post(), $imgName);
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => [],
+                    'message' => 'User saved successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+
+    public function save_the_teacher(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $imgName = '';
+                if($this->input->post('img_data')){
+                    $img_data = $this->input->post('img_data');
+                    $target_path = "assets/uploads/users/";
+                    $imgName = 'p'.'_'.uniqid().".jpg"; 
+                    $data    = explode(',', $img_data);
+                    $decoded = base64_decode($data[1]);
+                    file_put_contents($target_path.$imgName, $decoded);
+                }
+                $data = $this->admin_model->save_the_teacher_model($this->input->post(), $imgName);
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => [],
+                    'message' => 'User saved successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+
+    public function get_the_student(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $data = $this->admin_model->get_specific_student($this->input->post('id'));
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => ($data) ? $data[0] : [],
+                    'message' => 'Book fetched successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+    
+    public function get_the_teacher(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $data = $this->admin_model->get_specific_teacher($this->input->post('id'));
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => ($data) ? $data[0] : [],
+                    'message' => 'Book fetched successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+
+    public function get_the_user(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $data = $this->admin_model->get_specific_user($this->input->post('id'));
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => ($data) ? $data[0] : [],
+                    'message' => 'User fetched successfully'
                 )
             );
 		}else{
@@ -194,6 +391,49 @@ class Admin extends CI_Controller {
                     'status' => true,
                     'data' => [],
                     'message' => 'Saved successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+
+    public function profile_settings(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			$data['is_page'] = 'admin/profile_settings';
+            $data['page_name'] = 'Profile Settings';
+            $data['profile']   = $this->admin_model->get_my_profile($this->session->userdata('id'));
+            $this->load->view('Admin/profile_settings', $data);
+		}else{
+            redirect('login');
+        }
+	}
+
+    public function save_profile_settings(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $imgName = '';
+                if($this->input->post('img_data')){
+                    $img_data = $this->input->post('img_data');
+                    $target_path = "assets/uploads/users/";
+                    $imgName = 'p'.'_'.uniqid().".jpg"; 
+                    $data    = explode(',', $img_data);
+                    $decoded = base64_decode($data[1]);
+                    file_put_contents($target_path.$imgName, $decoded);
+                }
+                $data = $this->admin_model->save_profile_settings_model($this->input->post(), $imgName);
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => [],
+                    'message' => 'Profile saved successfully'
                 )
             );
 		}else{

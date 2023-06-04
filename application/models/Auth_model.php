@@ -7,6 +7,7 @@ class Auth_model extends CI_Model {
         $this->db->select('*')->from('users');
         $this->db->where("username", $username);
         $this->db->where("password", $password);
+        $this->db->where("status", 'Active');
 		$data = $this->db->get()->row_array();
         if(isset($data['id'])){
             return $data;
