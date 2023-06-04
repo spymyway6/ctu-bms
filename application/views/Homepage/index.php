@@ -23,7 +23,7 @@
 							<div class="col-12 col-sm-6 col-lg-4">
 								<div class="single-post-area">
 									<!-- Post Thumbnail -->
-									<a href="#" class="post-thumbnail"><img src="<?=base_url();?>assets/front-office/img/bg-img/52.jpg" alt=""></a>
+									<a href="#" class="post-thumbnail"><img src="<?=base_url();?>assets/front-office/img/bg-img/user1.jpg" alt=""></a>
 									<!-- Post Catagory -->
 									<a href="#" class="btn post-catagory">Camera</a>
 									<!-- Post Conetent -->
@@ -41,7 +41,7 @@
 							<div class="col-12 col-sm-6 col-lg-4">
 								<div class="single-post-area">
 									<!-- Post Thumbnail -->
-									<a href="#" class="post-thumbnail"><img src="<?=base_url();?>assets/front-office/img/bg-img/53.jpg" alt=""></a>
+									<a href="#" class="post-thumbnail"><img src="<?=base_url();?>assets/front-office/img/bg-img/user2.jpg" alt=""></a>
 									<!-- Post Catagory -->
 									<a href="#" class="btn post-catagory">Country</a>
 									<!-- Post Conetent -->
@@ -59,7 +59,7 @@
 							<div class="col-12 col-sm-6 col-lg-4">
 								<div class="single-post-area">
 									<!-- Post Thumbnail -->
-									<a href="#" class="post-thumbnail"><img src="<?=base_url();?>assets/front-office/img/bg-img/54.jpg" alt=""></a>
+									<a href="#" class="post-thumbnail"><img src="<?=base_url();?>assets/front-office/img/bg-img/user3.jpg" alt=""></a>
 									<!-- Post Catagory -->
 									<a href="#" class="btn post-catagory">Camera</a>
 									<!-- Post Conetent -->
