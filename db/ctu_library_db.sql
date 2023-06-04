@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2023 at 10:14 AM
+-- Generation Time: Jun 04, 2023 at 03:30 PM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -56,14 +56,14 @@ INSERT INTO `books` (`id`, `accession_no`, `book_name`, `author`, `other_author`
 (2, 'AN-2023-06-2', 'My Jenyy', 'John', 'Loyd', '2nd', '2023-06-16', '2023-05-29', 'Basak', 2, 2, 0, 'Personal Development', '', 'Active', '2023-06-02 03:31:42', '2023-06-02 06:26:57'),
 (3, 'AN-2023-06-3', 'Book2', 'wqwe', 'qwe', 'qwe', '2023-06-16', '2023-06-08', 'qwe', 2, 4, 0, 'Autobiography', '', 'Active', '2023-06-02 03:32:46', '2023-06-02 09:02:24'),
 (4, 'AN-2023-06-4', 'Change Image', 'awe', 'qwe', 'qwe', '2023-06-03', '2023-05-31', 'qwe', 2, 2, 0, 'Autobiography', 'p_6479811ecd5f3.jpg', 'Inactive', '2023-06-02 03:33:19', '2023-06-02 06:27:01'),
-(5, 'AN-2023-06-5', 'book4', 'qwe', 'qwe', 'qwe', '2023-06-01', '2023-06-03', 'qwe', 4, 4, 0, 'Autobiography', 'p_64797dc79a16e.jpg', 'Active', '2023-06-02 03:36:52', '2023-06-02 08:27:37'),
+(5, 'AN-2023-06-5', 'book4', 'qwe', 'qwe', 'qwe', '2023-06-01', '2023-06-03', 'qwe', 4, 3, 1, 'Autobiography', 'p_64797dc79a16e.jpg', 'Active', '2023-06-02 03:36:52', '2023-06-04 12:13:56'),
 (6, 'AN-2023-06-6', 'book5', 'qwe', 'qwe', 'qwe', '2023-06-03', '2023-06-03', 'wqe', 2, 2, 0, 'Autobiography', '', 'Inactive', '2023-06-02 03:37:30', '2023-06-02 06:27:19'),
 (7, 'AN-2023-06-7', 'Save the book 5', 'MJj', '3', 'qwe', '2023-06-03', '2023-06-16', 'qwe', 3, 3, 0, 'Business & Money', 'p_64797fa66213e.jpg', 'Inactive', '2023-06-02 05:35:34', '2023-06-02 09:42:44'),
 (8, '2023-06-02-8', 'Save the book 2323', 'MJj', 'John', '1st Edition', '2023-06-08', '2023-06-13', 'Mandaue', 23, 23, 0, 'Autobiography', '', 'Active', '2023-06-02 05:43:31', '2023-06-02 06:27:24'),
 (9, '2323', 'Save the book 1', 'MJj', 'qwe-edit', '1st Edition', '2023-06-02', '2023-06-01', 'qwe', 3, 3, 0, 'Autobiography', '', 'Active', '2023-06-02 05:45:45', '2023-06-02 06:27:26'),
 (10, '2323', 'Save the book 2323', 'MJj', 'qwe', '1st Edition', '2023-06-02', '2023-07-05', 'Mandaue', 23, 23, 0, 'Business & Money', '', 'Active', '2023-06-02 06:20:21', '2023-06-02 06:27:29'),
-(11, '2323', 'Save the book 2323', 'MJj', 'qwe', '1st Edition', '2023-06-02', '2023-07-05', 'Mandaue', 23, 23, 0, 'Business & Money', '', 'Active', '2023-06-02 06:20:33', '2023-06-02 09:33:18'),
-(12, '2323', 'Test 1', 'MJj', 'qwe', '1st Edition', '2023-06-02', '2023-06-28', 'Mandaue', 3, 1, 2, 'Autobiography', 'p_64798b46aa416.jpg', 'Active', '2023-06-02 06:25:10', '2023-06-02 09:49:13');
+(11, '2323', 'Save the book 2323', 'MJj', 'qwe', '1st Edition', '2023-06-02', '2023-07-05', 'Mandaue', 23, 22, 1, 'Business & Money', '', 'Active', '2023-06-02 06:20:33', '2023-06-04 12:36:06'),
+(12, '2323', 'Test 1', 'MJj', 'qwe', '1st Edition', '2023-06-02', '2023-06-28', 'Mandaue', 3, -1, 4, 'Autobiography', 'p_64798b46aa416.jpg', 'Active', '2023-06-02 06:25:10', '2023-06-04 12:17:35');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,43 @@ INSERT INTO `issue_book` (`issue_id`, `user_id`, `book_id`, `request_type`, `req
 (6, 2, 11, 1, 3, '2023-06-05', '2023-06-02', '2023-06-02 09:18:00', '2023-06-02 09:33:18'),
 (7, 2, 12, 1, 2, NULL, NULL, '2023-06-02 09:34:15', '2023-06-02 09:35:27'),
 (8, 2, 12, 1, 3, '2023-06-05', '2023-06-02', '2023-06-02 09:38:18', '2023-06-02 09:49:13'),
-(9, 2, 12, 1, 1, '2023-06-01', NULL, '2023-06-02 09:38:29', '2023-06-02 10:02:24');
+(9, 2, 12, 1, 3, '2023-06-01', '2023-06-04', '2023-06-02 09:38:29', '2023-06-04 11:59:55'),
+(10, 5, 12, 1, 1, '2023-06-07', NULL, '2023-06-04 11:34:29', '2023-06-04 11:59:25'),
+(11, 2, 12, 1, 3, '2023-06-07', '2023-06-04', '2023-06-04 11:59:10', '2023-06-04 11:59:51'),
+(12, 2, 5, 1, 1, '2023-06-07', NULL, '2023-06-04 12:13:37', '2023-06-04 12:13:56'),
+(13, 2, 12, 1, 1, '2023-06-07', NULL, '2023-06-04 12:14:58', '2023-06-04 12:15:10'),
+(14, 2, 12, 1, 1, '2023-06-07', NULL, '2023-06-04 12:15:23', '2023-06-04 12:17:33'),
+(15, 2, 11, 1, 1, '2023-06-07', NULL, '2023-06-04 12:35:56', '2023-06-04 12:36:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pages`
+--
+
+CREATE TABLE `pages` (
+  `id` int NOT NULL,
+  `page_name` text COLLATE utf8mb4_general_ci NOT NULL,
+  `page_content` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` text COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`id`, `page_name`, `page_content`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'General Rules', 'Lorem', 'general-rules', '2023-06-04 14:30:55', '2023-06-04 15:28:50'),
+(2, 'Borrowing Policy edit', '<h1>Test Header</h1><div><br></div><span style=\"font-weight: bold;\">Borrowing Policy edited</span><div><span style=\"font-weight: bold;\"><br></span></div><div><span style=\"font-weight: bold;\"><a href=\"https://google.com\" target=\"_blank\">Gogole</a></span></div>', 'borrowing-policy', '2023-06-04 14:30:55', '2023-06-04 15:28:58'),
+(3, 'Circulation Service', 'Lorenm', 'circulation-services', '2023-06-04 14:36:09', '2023-06-04 15:29:18'),
+(4, 'Library Orientation and Instruction', 'Library Orientation and Instruction', 'library-orientation', '2023-06-04 14:39:47', '2023-06-04 15:29:25'),
+(5, 'Document Delivery (DD)', 'LOrem', 'document-delivery', '2023-06-04 14:39:47', '2023-06-04 15:29:37'),
+(6, 'Inter-Library / Referral Services', 'Lorem', 'inter-library', '2023-06-04 14:39:47', '2023-06-04 15:29:43'),
+(7, 'Reference and Information Services', 'Lorem', 'information-services', '2023-06-04 14:39:47', '2023-06-04 15:30:00'),
+(8, 'Scanning, Photocopy, and Printing Services', 'Lorem', 'printing-services', '2023-06-04 14:39:47', '2023-06-04 15:30:07'),
+(9, 'Internet Access Services', 'Lorem', 'internet-access', '2023-06-04 14:39:47', '2023-06-04 15:30:11');
 
 -- --------------------------------------------------------
 
@@ -113,7 +149,7 @@ CREATE TABLE `users` (
   `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `department` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `address` text COLLATE utf8mb4_general_ci NOT NULL,
-  `role` int NOT NULL COMMENT '1 Admin, 2 Student',
+  `role` int NOT NULL COMMENT '1 Admin, 2 Student, 3 Teachers',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -123,8 +159,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `contact`, `pic`, `status`, `department`, `address`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'John Cloyd', 'Rosios', 'johncloyd', 'jcboy0923@gmail.com', '202cb962ac59075b964b07152d234b70', '09312149163', '', 'Yes', '', '', 1, '2023-06-01 23:27:45', '2023-06-01 23:56:24'),
-(2, 'Merz', 'Cepeda', 'merz', 'merz@gmail.com', '202cb962ac59075b964b07152d234b70', '09312149163', '', 'Yes', '', '', 2, '2023-06-01 23:27:45', '2023-06-01 23:56:24');
+(1, 'MJCoupon', 'test4', 'johncloyd', '1tfe_coup_mja4@yopmail.com', '202cb962ac59075b964b07152d234b70', '09312149163', '', 'Active', 'Admin or Librarian', '576 Cedar Lane', 1, '2023-06-01 23:27:45', '2023-06-04 11:33:23'),
+(2, '1TFV MJ Coupon', '1TFV', 'merz', '1tfv_coup_mja40@yopmail.com', '4297f44b13955235245b2497399d7a93', '09312149163', '', 'Active', 'IT', '576 Cedar Lane', 2, '2023-06-01 23:27:45', '2023-06-04 10:48:14'),
+(3, 'Luedit', 'YiLuedit', 'luLuedit', 'luesdit@yopmail.com', '202cb962ac59075b964b07152d234b70', '0389338383823232232323', 'p_647c6314dfdb0.jpg', 'Active', 'ITLueditc', '576 Cedar LaneLuedit', 2, '2023-06-04 09:52:38', '2023-06-04 10:10:44'),
+(4, 'Mj', 'Pins', 'mj', 'mj@yopmail.com', '202cb962ac59075b964b07152d234b70', '03893383838', 'p_647c668229a58.jpg', 'Active', 'IT', '576 Cedar Lane', 1, '2023-06-04 10:25:06', '2023-06-04 10:25:06'),
+(5, 'Teacher', 'MJ', 'teacher', 'teacher@yopmail.com', '202cb962ac59075b964b07152d234b70', '231234123', 'p_647c7455a4680.jpg', 'Active', 'Teacher', '576 Cedar Lane', 3, '2023-06-04 10:41:27', '2023-06-04 11:24:05');
 
 --
 -- Indexes for dumped tables
@@ -141,6 +180,12 @@ ALTER TABLE `books`
 --
 ALTER TABLE `issue_book`
   ADD PRIMARY KEY (`issue_id`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -162,13 +207,19 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `issue_book`
 --
 ALTER TABLE `issue_book`
-  MODIFY `issue_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `issue_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
