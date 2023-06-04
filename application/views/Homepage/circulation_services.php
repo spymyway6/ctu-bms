@@ -8,14 +8,13 @@
 	
     <section class="page-header">
         <div class="container">
-            <h1>GENERAL RULES AND
-REGULATIONS</h1>
+            <h1><?=$page['page_name']?></h1>
         </div>
     </section>
 
     <section class="page-content">
         <div class="container">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam vitae neque ipsa, in amet officiis quam ut vero harum velit quia distinctio. Quod atque facere ex molestiae nam ea accusamus.</p>
+            <p><?=$page['page_content']?></p>
         </div>
     </section>
 
