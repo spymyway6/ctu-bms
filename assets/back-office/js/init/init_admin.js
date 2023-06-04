@@ -552,3 +552,36 @@ function saveProfileSettings(e){
         });
     }
 }
+
+/* Pages Functions */
+function savePageSettings(e){
+    $('#savePageSettingsForm').parsley().validate();
+    if ($('#savePageSettingsForm').parsley().isValid()) {
+        $('.saveBtn').html('<i class="fa fa-spin fa-spinner"></i> Saving');
+        var data = $('#savePageSettingsForm').serializeArray();
+        var page_content = $("#post_description").Editor("getText");
+        data.push({name: 'page_content', value: page_content});
+        $.ajax({
+            type: "POST",
+            url: base_url+'admin/save_page_settings',
+            data: data,
+            success: (resp) => {
+                var res = JSON.parse(resp);
+                console.log(res);
+                if(res.status == true){
+                    swal("Saved!", "Page saved successfully", "success");
+                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    setTimeout(()=>{
+                        location.reload();
+                    }, 1000)
+                }else{
+                    swal("Ooops!", "A problem occured. Please try again..", "error");
+                }
+            },
+            error: (res) => {
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+                console.log(res);
+            },
+        });
+    }
+}

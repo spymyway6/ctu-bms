@@ -1,6 +1,7 @@
 <?php 
     $my_user_id = $this->session->userdata('id');
     $count_request = $this->admin_model->count_all_request();
+    $get_pages = $this->admin_model->get_all_pages();
 ?>
 <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
@@ -38,6 +39,14 @@
                 </li>
                 <li>
                     <a href="<?=base_url();?>admin/users" class="waves-effect <?=($is_page=='admin/users') ? 'active' : ''; ?>"><i class="ti-user"></i> <span> Librarians</span> </a>
+                </li>
+                <li class="has_sub">
+                    <a href="#" class="waves-effect <?=($is_page=='admin/pages') ? 'active' : ''; ?>"><i class="ti-link"></i> <span> Page Settings </span> </a>
+                    <ul class="list-unstyled">
+                        <?php foreach($get_pages as $page){ ?>
+                            <li><a href="<?=base_url();?>admin/pages/<?=$page['id']?>"><?=$page['page_name']?></a></li>
+                        <?php } ?>
+                    </ul>
                 </li>
                 <li>
                     <a href="<?=base_url();?>admin/profile_settings" class="waves-effect <?=($is_page=='admin/profile_settings')? 'active' : ''; ?>"><i class="ti-settings"></i> <span> Profile Settings </span> </a>

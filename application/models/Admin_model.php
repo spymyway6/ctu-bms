@@ -150,6 +150,16 @@ class Admin_model extends CI_Model {
         }
     }
 
+    public function get_all_pages(){
+        $this->db->select('*')->from('pages');
+        return $this->db->get()->result_array();
+    }
+
+    public function get_specific_page($page_id){
+        $this->db->select('*')->from('pages')->where('id', $page_id);
+        return $this->db->get()->row_array();
+    }
+
     public function get_collections(){
         $this->db->select('*')->from('books');
         return $this->db->get()->result_array();
@@ -333,6 +343,16 @@ class Admin_model extends CI_Model {
 
         $this->db->where('id', $this->session->userdata('id'));
         $result = $this->db->update('users', $data);
+        return ($result) ? true : false;
+    }
+
+    public function save_page_settings_model($form_data){
+        $data = array(
+            'page_name' => $form_data['page_name'],
+            'page_content' => $form_data['page_content'],
+        );
+        $this->db->where('id', $form_data['page_id']);
+        $result = $this->db->update('pages', $data);
         return ($result) ? true : false;
     }
 }   

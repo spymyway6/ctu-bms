@@ -118,6 +118,17 @@ class Admin extends CI_Controller {
         }
 	}
 
+    public function pages($page_id=''){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			$data['is_page'] = 'admin/pages';
+            $data['page_name'] = 'Page Lists';
+            $data['page'] = $this->admin_model->get_specific_page($page_id);
+            $this->load->view('Admin/pages', $data);
+		}else{
+            redirect('login');
+        }
+	}
+
     public function save_the_collection(){
         if($this->session->userdata('id') && $this->session->userdata('role')==1){
 			if($this->input->post()){
@@ -436,6 +447,29 @@ class Admin extends CI_Controller {
                     'status' => true,
                     'data' => [],
                     'message' => 'Profile saved successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+
+    public function save_page_settings(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $data = $this->admin_model->save_page_settings_model($this->input->post());
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => [],
+                    'message' => 'Student saved successfully'
                 )
             );
 		}else{
