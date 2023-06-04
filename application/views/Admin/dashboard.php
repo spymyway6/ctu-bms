@@ -25,28 +25,28 @@
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-my-library-books text-primary"></i>
-                                    <h2 class="m-0 text-dark counter font-600">50568</h2>
+                                    <h2 class="m-0 text-dark counter font-600"><?=$count_request['count_books']?></h2>
                                     <div class="text-muted m-t-5">Total Collections</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-account-child text-pink"></i>
-                                    <h2 class="m-0 text-dark counter font-600">1256</h2>
-                                    <div class="text-muted m-t-5">Total Students</div>
+                                    <h2 class="m-0 text-dark counter font-600"><?=$count_request['count_users']?></h2>
+                                    <div class="text-muted m-t-5">Total Users</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-book text-info"></i>
-                                    <h2 class="m-0 text-dark counter font-600">18</h2>
+                                    <h2 class="m-0 text-dark counter font-600"><?=$count_request['count_borrowed']?></h2>
                                     <div class="text-muted m-t-5">Total Borrowed Books</div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="widget-panel widget-style-2 bg-white">
                                     <i class="md md-access-alarms text-danger"></i>
-                                    <h2 class="m-0 text-dark counter font-600">8564</h2>
+                                    <h2 class="m-0 text-dark counter font-600"><?=$count_request['count_expired']?></h2>
                                     <div class="text-muted m-t-5">Expired</div>
                                 </div>
                             </div>
@@ -60,21 +60,25 @@
 
 									<div class="nicescroll mx-box" tabindex="5001" style="overflow: hidden; outline: none;">
                                         <ul class="list-unstyled transaction-list m-r-5">
-                                            <li>
-                                                <i class="ti-upload text-success"></i>
-                                                <span class="tran-text">Merz - Book Name</span>
-                                                <span class="pull-right text-success tran-price">Returned</span>
-                                                <span class="pull-right text-muted">07/09/2023</span>
-                                                <span class="clearfix"></span>
-                                            </li>
-                                            <li>
-                                                <i class="ti-download text-danger"></i>
-                                                <span class="tran-text">John Loyd - Book Name</span>
-                                                <span class="pull-right text-danger tran-price">Borrowed</span>
-                                                <span class="pull-right text-muted">07/09/2023</span>
-                                                <span class="clearfix"></span>
-                                            </li>
-
+                                            <?php if($latest_transactions){ ?>
+                                                <?php foreach($latest_transactions as $lt){ ?>
+                                                    <li>
+                                                        <i class="ti-upload text-success"></i>
+                                                        <span class="tran-text"><?=$lt['firstname']?> <?=$lt['lastname']?> - <?=$lt['book_name']?></span>
+                                                        <span class="pull-right text-success tran-price">Borrow</span>
+                                                        <span class="pull-right text-muted"><?=date('M d, Y', strtotime($lt['created_at']))?></span>
+                                                        <span class="clearfix"></span>
+                                                    </li>
+                                                <?php } ?>
+                                            <?php }else{ ?>
+                                                <li>
+                                                    <i class="ti-check text-success"></i>
+                                                    <span class="tran-text">No latest transactions at this time</span>
+                                                    <span class="pull-right text-success tran-price">Empty</span>
+                                                    <span class="pull-right text-muted"><?=date('M d, Y')?></span>
+                                                    <span class="clearfix"></span>
+                                                </li>
+                                            <?php } ?>
 
                                         </ul>
                                     </div>

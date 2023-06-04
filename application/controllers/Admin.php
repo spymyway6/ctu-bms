@@ -11,6 +11,8 @@ class Admin extends CI_Controller {
         if($this->session->userdata('id') && $this->session->userdata('role')==1){
 			$data['is_page'] = 'admin/dashboard';
             $data['page_name'] = 'Dashboard';
+            $data['latest_transactions'] = $this->admin_model->get_latest_transactions();
+            $data['count_request'] = $this->admin_model->count_all_request();
             $this->load->view('Admin/dashboard', $data);
 		}else{
             redirect('login');
