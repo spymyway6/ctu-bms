@@ -93,7 +93,7 @@
 							<div class="col-12 col-sm-6 col-lg-4">
 								<div class="single-post-area">
 									<!-- Post Thumbnail -->
-									<a href="#" class="post-thumbnail"><img src="<?=base_url();?>assets/front-office/img/bg-img/52.jpg" alt=""></a>
+									<a href="#" class="post-thumbnail"><img src="http://localhost/ctu-bms/assets/front-office/img/bg-img/52.jpg" alt=""></a>
 									<!-- Post Catagory -->
 									<a href="#" class="btn post-catagory">Camera</a>
 									<!-- Post Conetent -->

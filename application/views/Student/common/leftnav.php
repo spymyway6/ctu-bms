@@ -30,12 +30,6 @@
                     <a href="<?=base_url();?>student/overdue_lists" class="waves-effect <?=($is_page=='student/overdue_lists') ? 'active' : ''; ?>"><i class="ti-flag"></i> <span> Overdue Lists </span> </a>
                 </li>
                 <li>
-                    <a href="<?=base_url();?>student/students" class="waves-effect <?=($is_page=='student/students') ? 'active' : ''; ?>"><i class="ti-id-badge"></i> <span> Students</span> </a>
-                </li>
-                <li>
-                    <a href="<?=base_url();?>student/users" class="waves-effect <?=($is_page=='student/users') ? 'active' : ''; ?>"><i class="ti-user"></i> <span> Users</span> </a>
-                </li>
-                <li>
                     <a href="<?=base_url();?>student/settings" class="waves-effect <?=($is_page=='student/settings')? 'active' : ''; ?>"><i class="ti-settings"></i> <span> Settings </span> </a>
                 </li>
             </ul>
