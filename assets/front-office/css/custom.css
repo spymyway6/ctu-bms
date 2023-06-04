@@ -181,3 +181,41 @@
 .footer-area .copywrite-text p{
     color:#d4b050;
 }
+
+/* Page Header */
+.page-header {
+    background-image: url(../../front-office/img/bg-img/bg1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 25rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-header::after {
+    content: "";
+    height: 25rem;
+    background: #04040499;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+.page-header .container {
+    position: relative;
+    z-index: 1;
+}
+.page-header .container h1 {
+    color: #fff;
+    text-align: center;
+    margin-top: 35px;
+}
+.page-content .container {
+    padding: 75px 25px;
+}
+li.active.cn-dropdown-item.has-down ul.dropdown li a::before {
+    display: none;
+}

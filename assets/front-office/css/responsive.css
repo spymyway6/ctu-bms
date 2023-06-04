@@ -1,0 +1,6 @@
+@media only screen and (max-width: 767px){
+    .classy-nav-container .classy-navbar .nav-brand {
+        max-width: 220px;
+        margin-right: 0;
+    }
+}

@@ -11,4 +11,9 @@ class Home extends CI_Controller {
 		$data['is_page'] = 'homepage';
 		$this->load->view('Homepage/index', $data);
 	}
+
+    public function library_policy(){
+        $data['is_page'] = 'library_policy';
+		$this->load->view('Homepage/library_policy', $data);
+    }
 }

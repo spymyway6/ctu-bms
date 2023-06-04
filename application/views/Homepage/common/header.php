@@ -48,16 +48,16 @@
 						<!-- Nav Start -->
 						<div class="classynav">
 							<ul id="nav">
-								<li class="active"><a href="<?=base_url();?>">Home</a></li>
+								<li class="<?=$is_page == "homepage" ? 'active' : ''?>"><a href="<?=base_url();?>">Home</a></li>
 								<li><a href="javascript:;">Library Collection</a>
 									<ul class="dropdown">
 										<li><a href="javascript:;">Collection</a></li>
 										<li><a href="javascript:;">New Aquisition</a></li>
 									</ul>
 								</li>
-								<li><a href="javascript:;">Library Policies</a>
+								<li class="<?=$is_page == "library_policy" ? 'active' : ''?>"><a href="javascript:;">Library Policies</a>
 									<ul class="dropdown">
-										<li><a href="javascript:;">General Rules</a></li>
+										<li><a href="<?=base_url();?>/library-policy">General Rules</a></li>
 										<li><a href="javascript:;">Borrowing Policy</a></li>
 									</ul>
 								</li>
