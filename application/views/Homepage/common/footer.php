@@ -1,4 +1,4 @@
-<footer class="footer-area">
+<footer class="footer-area" class="wow fadeInUp" data-wow-delay="100ms">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
