@@ -86,7 +86,7 @@ function borrowBook(id, bookName, requestStatus){
                 if(res.status == true){
                     window.location.href = base_url+ "student/pending_requests";
                 }else{
-                    swal("Ooops!", "A problem occured. Please try again..", "error");
+                    swal("Sorry!", res.message, "error");
                 }
             },
             error: (res) => {

@@ -36,7 +36,6 @@
                                                     <th>Book Name</th>
                                                     <th>Author</th>
                                                     <th>Category</th>
-                                                    <th>Date Published</th>
                                                     <th>Date Added</th>
                                                     <th>Available</th>
                                                     <th>Unavailable</th>
@@ -58,9 +57,8 @@
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['author']?></td>
                                                         <td><?=$col['category']?></td>
-                                                        <td><?=$col['publish_date']?></td>
-                                                        <td><?=$col['created_at']?></td>
-                                                        <td class="text-center"><?=$col['available']?></td>
+                                                        <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
+                                                        <td class="text-center"><?=$col['quantity'] - $col['unavailable']?></td>
                                                         <td class="text-center"><?=$col['unavailable']?></td>
                                                         <td class="text-center"><?=($col['available']) ? '<span class="badge badge-success">Available</span>' : '<span class="badge badge-danger">Unavailable</span>'?> </td>
                                                         <td class="text-center">
@@ -215,7 +213,7 @@
         <script>
             $(document).ready(function() {
                 $('#collectionsTable').DataTable({
-                    "order": [[ 6, "desc" ]]
+                    "order": [[ 5, "desc" ]]
                 });
             });
         </script>

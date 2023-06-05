@@ -133,13 +133,7 @@ class Student extends CI_Controller {
 			if($this->input->post()){
                 $data = $this->student_model->set_borrow_book($this->input->post());
             }
-            echo json_encode(
-                array(
-                    'status' => true,
-                    'data' => [],
-                    'message' => 'Saved successfully'
-                )
-            );
+            echo json_encode($data);
 		}else{
             echo json_encode(
                 array(

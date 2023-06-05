@@ -37,7 +37,7 @@
                                                     <th>Book Name</th>
                                                     <th>Category</th>
                                                     <th>Date Borrowed</th>
-                                                    <th>Expiry Date</th>
+                                                    <th>Return Date</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>

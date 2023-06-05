@@ -44,14 +44,42 @@ class Student_model extends CI_Model {
     }
 
     public function set_borrow_book($form_data){
-        $data = array(
-            'user_id'        => $this->session->userdata('id'),
-            'book_id'        => $form_data['id'],
-            'request_type'   => ($form_data['request_type']=='Borrow') ? 1 : 2,
-            'request_status' => 0,
-        );
-        $this->db->insert('issue_book', $data);
-        return true;
+        $user_id = $this->session->userdata('id');
+        // Check if has book borrowed
+        $this->db->select('*')->from('issue_book')->where('book_id', $form_data['id'])->where('request_status !=', 3)->where('user_id', $user_id);
+        $check_borrow = $this->db->get()->row_array();
+
+        if($check_borrow){
+            return array(
+                'status' => false,
+                'data' => [],
+                'message' => 'You cannot request the same book at the same time.'
+            );
+        }else{
+            // Check if how many book borrowed
+            $user_id = $this->session->userdata('id');
+            $count_borrowed = $this->db->where('user_id', $user_id)->where('request_status !=', 3)->from("issue_book")->count_all_results();
+            if($count_borrowed == 3){
+                return array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'You have reached the 3 maximum amount of requested or borrowed books.'
+                );
+            }else{
+                $data = array(
+                    'user_id'        => $this->session->userdata('id'),
+                    'book_id'        => $form_data['id'],
+                    'request_type'   => ($form_data['request_type']=='Borrow') ? 1 : 2,
+                    'request_status' => 0,
+                );
+                $this->db->insert('issue_book', $data);
+                return array(
+                    'status' => true,
+                    'data' => [],
+                    'message' => 'Book requested successfully!'
+                );
+            }
+        }
     }
 
     public function get_pending_requests(){
