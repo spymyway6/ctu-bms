@@ -63,7 +63,7 @@
                                                             </div>
                                                         </td>
                                                         <td><?=$col['book_name']?></td>
-                                                        <td><?=$col['category']?></td>
+                                                        <td><?=$col['category_name']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
                                                         <td><?=date('M d, Y', strtotime($col['expiry_date']))?></td>
                                                         <td class="text-center"><span class="badge badge-danger">Overdue</span></td>
@@ -225,7 +225,7 @@
         <script>
             $(document).ready(function() {
                 $('#collectionsTable').DataTable({
-                    "order": [[ 6, "desc" ]]
+                    "order": [[ 5, "desc" ]]
                 });
                 $('.image-popup').magnificPopup({
                     type: 'image',

@@ -68,6 +68,7 @@ class Student extends CI_Controller {
 			$data['is_page'] = 'student/profile_settings';
             $data['page_name'] = 'Profile Settings';
             $data['profile']   = $this->student_model->get_my_profile($this->session->userdata('id'));
+            $data['count_request'] = $this->student_model->count_all_request($this->session->userdata('id'));
             $this->load->view('Student/profile_settings', $data);
 		}else{
             redirect('login');

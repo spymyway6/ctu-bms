@@ -431,9 +431,10 @@ class Admin extends CI_Controller {
 
     public function profile_settings(){
         if($this->session->userdata('id') && $this->session->userdata('role')==1){
-			$data['is_page'] = 'admin/profile_settings';
+			$data['is_page']   = 'admin/profile_settings';
             $data['page_name'] = 'Profile Settings';
             $data['profile']   = $this->admin_model->get_my_profile($this->session->userdata('id'));
+            $data['count_request'] = $this->admin_model->count_all_request();
             $this->load->view('Admin/profile_settings', $data);
 		}else{
             redirect('login');

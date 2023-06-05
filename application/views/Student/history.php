@@ -58,7 +58,7 @@
                                                         <td><?=$col['accession_no']?></td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['author']?></td>
-                                                        <td><?=$col['category']?></td>
+                                                        <td><?=$col['category_name']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at'])); ?></td>
                                                         <td><?=($col['return_date']) ? date('M d, Y', strtotime($col['return_date'])) : '-'; ?></td>
                                                         <td class="text-center"><?=($col['request_type'] == 1) ? '<span class="badge badge-info">Borrow</span>' : '<span class="badge badge-primary">Reserve</span>'; ?></td>
@@ -81,7 +81,7 @@
                                                         </td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
-                                                                <button type="button" onclick="editCollection(<?=$col['id']?>)" class="btn btn-primary waves-effect waves-light btn-sm"><i class="ti-zoom-in"></i> View Details</button>
+                                                                <button type="button" onclick="viewCollection(<?=$col['id']?>)" class="btn btn-primary waves-effect waves-light btn-sm"><i class="ti-zoom-in"></i> View Details</button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -102,7 +102,7 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                                     <h4 class="modal-title" id="form-title"><i class="fa fa-user-plus"></i> View Collection</h4> 
                                 </div> 
-                                <form action="<?=base_url();?>Student/add_this_member" data-parsley-validate novalidate method="POST" enctype="multipart/form-data" id="addNewCollectionForm">
+                                <form action="javascript:;" data-parsley-validate novalidate method="POST" enctype="multipart/form-data" id="addNewCollectionForm">
                                     <div class="modal-body"> 
                                         <div class="row">
                                             <div class="col-md-12">
@@ -186,14 +186,6 @@
                                                 <div class="form-group"> 
                                                     <label for="field-1" class="control-label">Unvailable * </label>
                                                     <input type="text" class="form-control numOnly" id="unavailable" name="unavailable" placeholder="Unvailable" readonly> 
-                                                </div> 
-                                            </div>
-                                        </div>
-                                        <div class="row d-none"> 
-                                            <div class="col-md-12"> 
-                                                <div class="form-group"> 
-                                                    <label for="field-1" class="control-label">Status * </label>
-                                                    <input type="text" class="form-control" name="status" id="status" placeholder="Status" readonly>
                                                 </div> 
                                             </div>
                                         </div>

@@ -60,7 +60,6 @@ function saveCollection(e){
             processData: false,
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Collection saved successfully", "success");
                     $('#addNewCollectionModal').modal('hide');
@@ -93,7 +92,6 @@ function editCollection(id){
         },
         success: (resp) => {
             var res = JSON.parse(resp);
-            console.log(res);
             if(res.status == true){
                 var default_img = base_url + 'assets/uploads/default.png';
                 $('#author').val(res.data.author);
@@ -284,7 +282,6 @@ function saveStudent(e){
             processData: false,
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Student saved successfully", "success");
                     $('#addNewStudentModal').modal('hide');
@@ -317,7 +314,6 @@ function editStudent(id){
         },
         success: (resp) => {
             var res = JSON.parse(resp);
-            console.log(res);
             if(res.status == true){
                 var default_img = base_url + 'assets/uploads/default.png';
                 $('#firstname').val(res.data.firstname);
@@ -365,7 +361,6 @@ function saveUser(e){
             processData: false,
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     swal("Saved!", "User saved successfully", "success");
                     $('#addNewUserModal').modal('hide');
@@ -398,7 +393,6 @@ function editUser(id){
         },
         success: (resp) => {
             var res = JSON.parse(resp);
-            console.log(res);
             if(res.status == true){
                 var default_img = base_url + 'assets/uploads/default.png';
                 $('#firstname').val(res.data.firstname);
@@ -446,7 +440,6 @@ function saveTeacher(e){
             processData: false,
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Teacher saved successfully", "success");
                     $('#addNewTeacherModal').modal('hide');
@@ -479,7 +472,6 @@ function editTeacher(id){
         },
         success: (resp) => {
             var res = JSON.parse(resp);
-            console.log(res);
             if(res.status == true){
                 var default_img = base_url + 'assets/uploads/default.png';
                 $('#firstname').val(res.data.firstname);
@@ -527,7 +519,6 @@ function saveProfileSettings(e){
             processData: false,
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Profile saved successfully", "success");
                     $('.saveBtn').html('<i class="fa fa-save"></i> Save');
@@ -560,7 +551,6 @@ function savePageSettings(e){
             data: data,
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Page saved successfully", "success");
                     $('.saveBtn').html('<i class="fa fa-save"></i> Save');
@@ -610,7 +600,6 @@ function saveCategory(e){
             processData: false,
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Category saved successfully", "success");
                     $('#addNewCategoryModal').modal('hide');
@@ -642,7 +631,6 @@ function editCategory(category_id){
         },
         success: (resp) => {
             var res = JSON.parse(resp);
-            console.log(res);
             if(res.status == true){
                 $('#category_name').val(res.data.category_name);
                 $('#category_status').val(res.data.category_status);

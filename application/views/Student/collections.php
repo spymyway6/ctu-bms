@@ -114,7 +114,7 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                                     <h4 class="modal-title" id="form-title"><i class="fa fa-user-plus"></i> View Collection</h4> 
                                 </div> 
-                                <form action="<?=base_url();?>Student/add_this_member" data-parsley-validate novalidate method="POST" enctype="multipart/form-data" id="addNewCollectionForm">
+                                <form action="javascript:;" data-parsley-validate novalidate method="POST" enctype="multipart/form-data" id="addNewCollectionForm">
                                     <div class="modal-body"> 
                                         <div class="row">
                                             <div class="col-md-12">
@@ -198,14 +198,6 @@
                                                 <div class="form-group"> 
                                                     <label for="field-1" class="control-label">Unvailable * </label>
                                                     <input type="text" class="form-control numOnly" id="unavailable" name="unavailable" placeholder="Unvailable" readonly> 
-                                                </div> 
-                                            </div>
-                                        </div>
-                                        <div class="row"> 
-                                            <div class="col-md-12"> 
-                                                <div class="form-group"> 
-                                                    <label for="field-1" class="control-label">Status * </label>
-                                                    <input type="text" class="form-control" name="status" id="status" placeholder="Status" readonly>
                                                 </div> 
                                             </div>
                                         </div>

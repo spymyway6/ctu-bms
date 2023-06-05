@@ -24,9 +24,11 @@ function viewCollection(id){
         },
         success: (resp) => {
             var res = JSON.parse(resp);
-            console.log(res);
             if(res.status == true){
                 var default_img = base_url + 'assets/uploads/default.png';
+                var _quantity = Number(res.data.quantity);
+                var _unavailable = Number(res.data.unavailable);
+                var available = _quantity - _unavailable;
                 $('#author').val(res.data.author);
                 $('#accession_no').val(res.data.accession_no);
                 $('#book_name').val(res.data.book_name);
@@ -38,10 +40,8 @@ function viewCollection(id){
                 $('#location').val(res.data.location);
                 $('#other_author').val(res.data.other_author);
                 $('#publish_date').val(res.data.publish_date);
-                $('#quantity').val(res.data.quantity);
-                $('#available').val(res.data.available);
+                $('#available').val(available);
                 $('#unavailable').val(res.data.unavailable);
-                $('#status').val(res.data.status);
 
                 if(res.data.book_image){
                     $('#img-profile').attr('src', base_url + 'assets/uploads/books/'+res.data.book_image);
@@ -82,7 +82,6 @@ function borrowBook(id, bookName, requestStatus){
             },
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     window.location.href = base_url+ "student/pending_requests";
                 }else{
@@ -138,7 +137,6 @@ function saveProfileSettings(e){
             processData: false,
             success: (resp) => {
                 var res = JSON.parse(resp);
-                console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Student saved successfully", "success");
                     $('#addNewStudentModal').modal('hide');

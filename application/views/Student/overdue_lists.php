@@ -53,13 +53,13 @@
                                                         </td>
                                                         <td><?=$col['accession_no']?></td>
                                                         <td><?=$col['book_name']?></td>
-                                                        <td><?=$col['category']?></td>
+                                                        <td><?=$col['category_name']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
                                                         <td><?=date('M d, Y', strtotime($col['expiry_date']))?></td>
                                                         <td class="text-center"><span class="badge badge-danger">Overdue</span></td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
-                                                                <button type="button" onclick="editCollection(<?=$col['id']?>)" class="btn btn-primary waves-effect waves-light btn-sm"><i class="ti-zoom-in"></i> View Details</button>
+                                                                <button type="button" onclick="viewCollection(<?=$col['id']?>)" class="btn btn-primary waves-effect waves-light btn-sm"><i class="ti-zoom-in"></i> View Details</button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -80,7 +80,7 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                                     <h4 class="modal-title" id="form-title"><i class="fa fa-user-plus"></i> View Collection</h4> 
                                 </div> 
-                                <form action="<?=base_url();?>Student/add_this_member" data-parsley-validate novalidate method="POST" enctype="multipart/form-data" id="addNewCollectionForm">
+                                <form action="javascript:;" data-parsley-validate novalidate method="POST" enctype="multipart/form-data" id="addNewCollectionForm">
                                     <div class="modal-body"> 
                                         <div class="row">
                                             <div class="col-md-12">
@@ -167,14 +167,6 @@
                                                 </div> 
                                             </div>
                                         </div>
-                                        <div class="row d-none"> 
-                                            <div class="col-md-12"> 
-                                                <div class="form-group"> 
-                                                    <label for="field-1" class="control-label">Status * </label>
-                                                    <input type="text" class="form-control" name="status" id="status" placeholder="Status" readonly>
-                                                </div> 
-                                            </div>
-                                        </div>
                                         <!-- Other Fields -->
                                         <input type="hidden" id="book_id" name="book_id"> 
                                     </div>
@@ -201,7 +193,7 @@
         <script>
             $(document).ready(function() {
                 $('#collectionsTable').DataTable({
-                    "order": [[ 6, "desc" ]]
+                    "order": [[ 4, "desc" ]]
                 });
                 $('.image-popup').magnificPopup({
                     type: 'image',

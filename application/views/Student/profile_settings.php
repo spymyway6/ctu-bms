@@ -114,11 +114,10 @@
 			                            <h4><?=$profile['firstname']?> <?=$profile['lastname']?></h4>
 			                            <p class="text-muted"><i class="fa fa-map-marker"></i> <?=$profile['address']?></p>
 			                            <p class="m-t-10 text-muted p-20">Department: <?=$profile['department']?></p>
-                                        <?php $count_request = $this->student_model->count_all_request($this->session->userdata('id')); ?>
 			                            <ul class="list-inline widget-list clearfix">
                                             <li class="col-md-3"><span><?=$count_request['count_pending']?></span>Pending</li>
 			                                <li class="col-md-3"><span><?=$count_request['count_borrowed']?></span>Borrowed</li>
-			                                <li class="col-md-3"><span><?=$count_request['count_reserved']?></span>Request</li>
+			                                <li class="col-md-3"><span><?=$count_request['count_reserved']?></span>Reserved</li>
 			                                <li class="col-md-3"><span><?=$count_request['count_history']?></span>History</li>
 			                            </ul>
 			                        </div>

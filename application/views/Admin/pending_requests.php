@@ -66,7 +66,7 @@
                                                         </td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['author']?></td>
-                                                        <td><?=$col['category']?></td>
+                                                        <td><?=$col['category_name']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
                                                         <td class="text-center"><?=($col['request_type'] == 1) ? '<span class="badge badge-info">Borrow</span>' : '<span class="badge badge-primary">Reserve</span>'; ?></td>
                                                         <td class="text-center">

@@ -9,7 +9,7 @@ class Admin_model extends CI_Model {
             'count_pending'  => $this->db->where('request_status', 0)->from("issue_book")->count_all_results(),
             'count_borrowed' => $this->db->where('request_status', 1)->where('request_type', 1)->from("issue_book")->count_all_results(),
             'count_reserved' => $this->db->where('request_status', 1)->where('request_type', 2)->from("issue_book")->count_all_results(),
-            'count_history'  => $this->db->where('request_status', 3)->from("issue_book")->count_all_results(),
+            'count_history'  => $this->db->from("issue_book")->count_all_results(),
             'count_users'    => $this->db->from("users")->count_all_results(),
             'count_books'    => $this->db->from("books")->count_all_results(),
             'count_expired'  => $this->db->where('STR_TO_DATE(expiry_date, "%Y-%m-%d") <', $toDate)->where('request_status', 1)->where('request_type', 1)->from("issue_book")->count_all_results(),
@@ -206,40 +206,45 @@ class Admin_model extends CI_Model {
     }
 
     public function get_pending_requests(){
-        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_status', 0);
+        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role, d.category_name')->from('issue_book a')->where('request_status', 0);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
+        $this->db->join('book_categories d', 'd.category_id = b.category', 'left');
         return $this->db->get()->result_array();
     }
     
     public function get_borrowed_collections(){
-        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_type', 1)->where('request_status', 1);
+        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role, d.category_name')->from('issue_book a')->where('request_type', 1)->where('request_status', 1);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
+        $this->db->join('book_categories d', 'd.category_id = b.category', 'left');
         return $this->db->get()->result_array();
     }
 
     public function get_reserved_collections(){
-        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_type', 2)->where('request_status', 1);
+        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role, d.category_name')->from('issue_book a')->where('request_type', 2)->where('request_status', 1);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
+        $this->db->join('book_categories d', 'd.category_id = b.category', 'left');
         return $this->db->get()->result_array();
     }
 
     public function get_history(){
-        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a');
+        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role, d.category_name')->from('issue_book a');
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
+        $this->db->join('book_categories d', 'd.category_id = b.category', 'left');
         return $this->db->get()->result_array();
     }
 
     public function get_overdue_lists(){
         $toDate = date('Y-m-d');
-        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a');
+        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role, d.category_name')->from('issue_book a');
         $this->db->where('STR_TO_DATE(expiry_date, "%Y-%m-%d") <', $toDate);
         $this->db->where('request_status', 1)->where('request_type', 1);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
+        $this->db->join('book_categories d', 'd.category_id = b.category', 'left');
         return $this->db->get()->result_array();
     }
 

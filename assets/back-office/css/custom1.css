@@ -33,3 +33,6 @@
 #sidebar-menu > ul > li > a:hover {
     color: #f05050;
 }
+.modal-content form .form-control[readonly] {
+    background: #fff;
+}
