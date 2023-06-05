@@ -18,6 +18,17 @@ class Admin extends CI_Controller {
             redirect('login');
         }
 	}
+
+    public function categories(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			$data['is_page'] = 'admin/categories';
+            $data['page_name'] = 'Book Categories';
+            $data['categories'] = $this->admin_model->get_categories();
+            $this->load->view('Admin/categories', $data);
+		}else{
+            redirect('login');
+        }
+	}
     
     public function collections(){
         if($this->session->userdata('id') && $this->session->userdata('role')==1){
@@ -470,6 +481,53 @@ class Admin extends CI_Controller {
                     'status' => true,
                     'data' => [],
                     'message' => 'Student saved successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+
+    // Categories
+    public function save_the_category(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $data = $this->admin_model->save_the_category_model($this->input->post());
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => [],
+                    'message' => 'Category saved successfully'
+                )
+            );
+		}else{
+            echo json_encode(
+                array(
+                    'status' => false,
+                    'data' => [],
+                    'message' => 'Unauthorized'
+                )
+            );
+        }
+	}
+    
+    public function get_the_category(){
+        if($this->session->userdata('id') && $this->session->userdata('role')==1){
+			if($this->input->post()){
+                $data = $this->admin_model->get_specific_category($this->input->post('category_id'));
+            }
+            echo json_encode(
+                array(
+                    'status' => true,
+                    'data' => $data,
+                    'message' => 'Category fetched successfully'
                 )
             );
 		}else{

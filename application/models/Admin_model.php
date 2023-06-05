@@ -160,6 +160,11 @@ class Admin_model extends CI_Model {
         return $this->db->get()->row_array();
     }
 
+    public function get_categories(){
+        $this->db->select('*')->from('book_categories')->order_by('category_name', 'asc');
+        return $this->db->get()->result_array();
+    }
+
     public function get_collections(){
         $this->db->select('*')->from('books');
         if(isset($_GET['category'])){
@@ -365,5 +370,26 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $form_data['page_id']);
         $result = $this->db->update('pages', $data);
         return ($result) ? true : false;
+    }
+
+    public function save_the_category_model($form_data){
+        $data = array(
+            'category_name' => $form_data['category_name'],
+            'category_status' => $form_data['category_status'],
+        );
+
+        if($form_data['category_id']){
+            $this->db->where('category_id', $form_data['category_id']);
+            $result = $this->db->update('book_categories', $data);
+            return ($result) ? true : false;
+        }else{
+            $this->db->insert('book_categories', $data);
+            return true;
+        }
+    }
+
+    public function get_specific_category($category_id){
+        $this->db->select('*')->from('book_categories')->where('category_id ', $category_id);
+        return $this->db->get()->row_array();
     }
 }   

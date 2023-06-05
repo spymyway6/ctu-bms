@@ -23,9 +23,8 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-                                    <?php if($this->session->userdata('role')==1 || strstr($this->session->userdata('permission'),'create_member')){ ?>
-                                        <a href="javascript:;" class="btn btn-success waves-effect waves-light btn-sm pull-right" onclick="addNewCollection()"><i class="fa fa-plus"></i> Add New Collection</a>
-                                    <?php } ?>
+                                    <a href="javascript:;" class="btn btn-success waves-effect waves-light btn-sm pull-right" onclick="addNewCollection()"><i class="fa fa-plus"></i> Add New Collection</a>
+                                    
                                     <h4 class="m-t-0 header-title"><b>Collection of Books</b></h4>
                                     <p class="text-muted m-b-30 font-13">
                                         List of all your the books inside the library.
@@ -87,10 +86,7 @@
                                                         </td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
-                                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                                    <li><a href="javascript:;" onclick="editCollection(<?=$col['id']?>)">Edit</a></li>
-                                                                </ul>
+                                                                <button type="button" onclick="editCollection(<?=$col['id']?>)" class="btn btn-warning waves-effect waves-light btn-sm"><i class="ti-pencil"></i> Edit</button>
                                                             </div>
                                                         </td>
                                                     </tr>

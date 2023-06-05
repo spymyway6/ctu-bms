@@ -1,7 +1,8 @@
 .transaction-list .tran-text {
     width: 400px;
 }
-#sidebar-menu > ul > li > a.active {
+#sidebar-menu > ul > li > a.active,
+#sidebar-menu .subdrop {
     background: #f4f8fb !important;
     border-left: 3px solid #f05050;
     color: #f05050 !important;
@@ -24,4 +25,11 @@
     line-height: 1;
     margin-top: 10px;
     font-size: 12px;
+}
+.navbar-default {
+    background-color: #7b2727;
+}
+#sidebar-menu ul ul a:hover, #sidebar-menu ul ul a.active, 
+#sidebar-menu > ul > li > a:hover {
+    color: #f05050;
 }

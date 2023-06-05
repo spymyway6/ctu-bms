@@ -586,3 +586,75 @@ function selectCategory(e){
         window.location.href = base_url + 'admin/collections?category='+$(e).val();
     }
 }
+
+/* Categories */
+function addNewCategory(){
+    $('#addNewCategoryModal').modal('show');
+    $('#addNewCategoryForm')[0].reset();
+    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
+}
+
+/* Save Category */
+function saveCategory(e){
+    $('#addNewCategoryForm').parsley().validate();
+    if ($('#addNewCategoryForm').parsley().isValid()) {
+        $('.saveBtn').html('<i class="fa fa-spin fa-spinner"></i> Saving');
+        var form = document.getElementById("addNewCategoryForm");
+        var formData = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: base_url+'admin/save_the_category',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (resp) => {
+                var res = JSON.parse(resp);
+                console.log(res);
+                if(res.status == true){
+                    swal("Saved!", "Category saved successfully", "success");
+                    $('#addNewCategoryModal').modal('hide');
+                    setTimeout(()=>{
+                        location.reload();
+                    }, 1000)
+                }else{
+                    swal("Ooops!", "A problem occured. Please try again..", "error");
+                }
+            },
+            error: (res) => {
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+                console.log(res);
+            },
+        });
+    }
+}
+
+function editCategory(category_id){
+    $('#addNewCategoryModal').modal('show');
+    $('#addNewCategoryForm').addClass('d-none');
+    $('.loader').removeClass('d-none');
+
+    $.ajax({
+        type: "POST",
+        url: base_url+'admin/get_the_category',
+        data: {
+            category_id: category_id
+        },
+        success: (resp) => {
+            var res = JSON.parse(resp);
+            console.log(res);
+            if(res.status == true){
+                $('#category_name').val(res.data.category_name);
+                $('#category_status').val(res.data.category_status);
+                $('#category_id').val(res.data.category_id);
+                $('#addNewCategoryForm').removeClass('d-none');
+                $('.loader').addClass('d-none');
+            }else{
+                swal("Ooops!", "A problem occured. Please try again..", "error");
+            }
+        },
+        error: (res) => {
+            swal("Ooops!", "A problem occured. Please try again..", "error");
+            console.log(res);
+        },
+    });
+}
