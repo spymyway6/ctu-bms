@@ -12,7 +12,7 @@ class Admin_model extends CI_Model {
             'count_history'  => $this->db->where('request_status', 3)->from("issue_book")->count_all_results(),
             'count_users'    => $this->db->from("users")->count_all_results(),
             'count_books'    => $this->db->from("books")->count_all_results(),
-            'count_expired'  => $this->db->where('STR_TO_DATE(expiry_date, "%Y-%m-%d") <', $toDate)->from("issue_book")->count_all_results(),
+            'count_expired'  => $this->db->where('STR_TO_DATE(expiry_date, "%Y-%m-%d") <', $toDate)->where('request_status', 1)->where('request_type', 1)->from("issue_book")->count_all_results(),
         );
         $data = array(
             'count_pending'  => ($get_data['count_pending'] > 99) ? '99+' : $get_data['count_pending'],
@@ -186,7 +186,7 @@ class Admin_model extends CI_Model {
     }
 
     public function get_latest_transactions(){
-        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_status', 0); // Pending
+        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_status', 0);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         $this->db->limit(20);
@@ -225,6 +225,7 @@ class Admin_model extends CI_Model {
         $toDate = date('Y-m-d');
         $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a');
         $this->db->where('STR_TO_DATE(expiry_date, "%Y-%m-%d") <', $toDate);
+        $this->db->where('request_status', 1)->where('request_type', 1);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
