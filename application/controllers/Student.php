@@ -23,6 +23,7 @@ class Student extends CI_Controller {
 			$data['is_page'] = 'student/collections';
             $data['page_name'] = 'Collections';
             $data['collections'] = $this->student_model->get_collections();
+            $data['categories'] = $this->student_model->get_active_categories();
             $this->load->view('Student/collections', $data);
 		}else{
             redirect('login');
@@ -113,7 +114,7 @@ class Student extends CI_Controller {
             echo json_encode(
                 array(
                     'status' => true,
-                    'data' => ($data) ? $data[0] : [],
+                    'data' => $data,
                     'message' => 'Book fetched successfully'
                 )
             );

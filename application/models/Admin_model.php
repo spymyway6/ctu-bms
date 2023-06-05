@@ -37,8 +37,6 @@ class Admin_model extends CI_Model {
             'copyright_date' => $form_data['copyright_date'],
             'location'       => $form_data['location'],
             'quantity'       => $form_data['quantity'],
-            'available'      => ($form_data['book_id']) ? $form_data['available'] : $form_data['quantity'],
-            'unavailable'    => $form_data['unavailable'],
             'category'       => $form_data['category'],
             'status'         => $form_data['status']
         );
@@ -165,10 +163,16 @@ class Admin_model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
+    public function get_active_categories(){
+        $this->db->select('*')->from('book_categories')->where('category_status', 1)->order_by('category_name', 'asc');
+        return $this->db->get()->result_array();
+    }
+
     public function get_collections(){
-        $this->db->select('*')->from('books');
+        $this->db->select('a.*, b.category_name')->from('books a');
+        $this->db->join('book_categories b', 'b.category_id = a.category', 'left');
         if(isset($_GET['category'])){
-            $this->db->where('category', $_GET['category']);
+            $this->db->where('a.category', $_GET['category']);
         }
         return $this->db->get()->result_array();
     }

@@ -14,7 +14,7 @@ $(document).ready(function() {
 function addNewCollection(){
     $('#addNewCollectionModal').modal('show');
     $('#addNewCollectionForm')[0].reset();
-    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
     var default_img = base_url + 'assets/uploads/default.png';
     $('#img-profile').attr('src', default_img);
 }
@@ -22,7 +22,7 @@ function addNewCollection(){
 function addNewStudent(){
     $('#addNewStudentModal').modal('show');
     $('#addNewStudentForm')[0].reset();
-    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
     var default_img = base_url + 'assets/uploads/default.png';
     $('#img-profile').attr('src', default_img);
     $('#password').attr('required', 'required');
@@ -31,7 +31,7 @@ function addNewStudent(){
 function addNewTeacher(){
     $('#addNewTeacherModal').modal('show');
     $('#addNewTeacherForm')[0].reset();
-    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
     var default_img = base_url + 'assets/uploads/default.png';
     $('#img-profile').attr('src', default_img);
     $('#password').attr('required', 'required');
@@ -40,7 +40,7 @@ function addNewTeacher(){
 function addNewUser(){
     $('#addNewUserModal').modal('show');
     $('#addNewUserForm')[0].reset();
-    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
     var default_img = base_url + 'assets/uploads/default.png';
     $('#img-profile').attr('src', default_img);
     $('#password').attr('required', 'required');
@@ -64,7 +64,7 @@ function saveCollection(e){
                 if(res.status == true){
                     swal("Saved!", "Collection saved successfully", "success");
                     $('#addNewCollectionModal').modal('hide');
-                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
                     setTimeout(()=>{
                         location.reload();
                     }, 1000)
@@ -288,7 +288,7 @@ function saveStudent(e){
                 if(res.status == true){
                     swal("Saved!", "Student saved successfully", "success");
                     $('#addNewStudentModal').modal('hide');
-                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
                     setTimeout(()=>{
                         location.reload();
                     }, 1000)
@@ -369,7 +369,7 @@ function saveUser(e){
                 if(res.status == true){
                     swal("Saved!", "User saved successfully", "success");
                     $('#addNewUserModal').modal('hide');
-                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
                     setTimeout(()=>{
                         location.reload();
                     }, 1000)
@@ -418,7 +418,7 @@ function editUser(id){
                     $('#img-profile').attr('src', default_img);
                 }
 
-                $('#addNewStudentForm').removeClass('d-none');
+                $('#addNewUserForm').removeClass('d-none');
                 $('.loader').addClass('d-none');
             }else{
                 swal("Ooops!", "A problem occured. Please try again..", "error");
@@ -450,7 +450,7 @@ function saveTeacher(e){
                 if(res.status == true){
                     swal("Saved!", "Teacher saved successfully", "success");
                     $('#addNewTeacherModal').modal('hide');
-                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
                     setTimeout(()=>{
                         location.reload();
                     }, 1000)
@@ -530,7 +530,7 @@ function saveProfileSettings(e){
                 console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Profile saved successfully", "success");
-                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
                     setTimeout(()=>{
                         location.reload();
                     }, 1000)
@@ -563,7 +563,7 @@ function savePageSettings(e){
                 console.log(res);
                 if(res.status == true){
                     swal("Saved!", "Page saved successfully", "success");
-                    $('.saveBtn').html('<i class="fa fa-user-plus"></i> Save');
+                    $('.saveBtn').html('<i class="fa fa-save"></i> Save');
                     setTimeout(()=>{
                         location.reload();
                     }, 1000)
@@ -591,6 +591,7 @@ function selectCategory(e){
 function addNewCategory(){
     $('#addNewCategoryModal').modal('show');
     $('#addNewCategoryForm')[0].reset();
+    $('#category_name').focus();
     $('.saveBtn').html('<i class="fa fa-save"></i> Save');
 }
 

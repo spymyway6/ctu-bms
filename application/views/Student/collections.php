@@ -33,9 +33,14 @@
                                             <div class="form-group"> 
                                                 <label for="field-1" class="control-label">Select Category * </label>
                                                 <select name="select_category" id="select_category" onchange="selectCategory(this)" class="form-control">
-                                                    <option value="All">All Category</option>
-                                                    <option value="Autobiography" <?=(isset($_GET['category']) && $_GET['category'] == 'Autobiography') ? 'selected' : ''?>>Autobiography  </option>
-                                                    <option value="Biography" <?=(isset($_GET['category']) && $_GET['category'] == 'Biography') ? 'selected' : ''?>>Biography </option>
+                                                    <?php if($categories){ ?>
+                                                        <option value="All">All Category</option>
+                                                        <?php foreach($categories as $cat){ ?>
+                                                            <option value="<?=$cat['category_id']; ?>" <?=(isset($_GET['category']) && $_GET['category'] == $cat['category_id']) ? 'selected' : ''?>><?=$cat['category_name']; ?></option>
+                                                        <?php } ?>
+                                                    <?php }else{ ?>
+                                                        <option value="All">All Category</option>
+                                                    <?php } ?>
                                                 </select>
                                             </div> 
                                         </div>
@@ -67,7 +72,7 @@
                                                         <td><?=$col['accession_no']?></td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['author']?></td>
-                                                        <td><?=$col['category']?></td>
+                                                        <td><?=$col['category_name']?></td>
                                                         <td class="text-center">
                                                             <div class="available-status">
                                                                 <?=($available) ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-danger">No</span>'?>
@@ -82,7 +87,7 @@
                                                             <div class="btn-group">
                                                                 <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
                                                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                                    <li><a href="javascript:;" onclick="editCollection(<?=$col['id']?>)">View</a></li>
+                                                                    <li><a href="javascript:;" onclick="viewCollection(<?=$col['id']?>)">View</a></li>
                                                                     <?php if($available){ ?>
                                                                         <li><a href="javascript:;" onclick="borrowBook(<?=$col['id']?>, '<?=$col['book_name']?>', 'Borrow')">Borrow </a></li>
                                                                     <?php }else{ ?>
@@ -230,7 +235,7 @@
         <script>
             $(document).ready(function() {
                 $('#collectionsTable').DataTable({
-                    "order": [[ 5, "desc" ]]
+                    "order": [[ 2, "asc" ]]
                 });
             });
         </script>

@@ -11,7 +11,7 @@ $(document).ready(function() {
     });
 });
 
-function editCollection(id){
+function viewCollection(id){
     $('#addNewCollectionModal').modal('show');
     $('#addNewCollectionForm').addClass('d-none');
     $('.loader').removeClass('d-none');
@@ -31,7 +31,7 @@ function editCollection(id){
                 $('#accession_no').val(res.data.accession_no);
                 $('#book_name').val(res.data.book_name);
                 $('#author').val(res.data.author);
-                $('#category').val(res.data.category);
+                $('#category').val(res.data.category_name);
                 $('#copyright_date').val(res.data.copyright_date);
                 $('#edition').val(res.data.edition);
                 $('#book_id').val(res.data.id);

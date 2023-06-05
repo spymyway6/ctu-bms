@@ -29,10 +29,16 @@ class Student_model extends CI_Model {
     }
 
     public function get_collections(){
-        $this->db->select('*')->from('books')->where('status !=', 'Inactive');
+        $this->db->select('a.*, b.category_name')->from('books a')->where('a.status !=', 'Inactive');
+        $this->db->join('book_categories b', 'b.category_id = a.category', 'left');
         if(isset($_GET['category'])){
-            $this->db->where('category', $_GET['category']);
+            $this->db->where('a.category', $_GET['category']);
         }
+        return $this->db->get()->result_array();
+    }
+
+    public function get_active_categories(){
+        $this->db->select('*')->from('book_categories')->where('category_status', 1)->order_by('category_name', 'asc');
         return $this->db->get()->result_array();
     }
 
@@ -42,8 +48,9 @@ class Student_model extends CI_Model {
     }
 
     public function get_specific_collection($id){
-        $this->db->select('*')->from('books')->where('id', $id);
-        return $this->db->get()->result_array();
+        $this->db->select('a.*, b.category_name')->from('books a')->where('a.id', $id);
+        $this->db->join('book_categories b', 'b.category_id = a.category', 'left');
+        return $this->db->get()->row_array();
     }
 
     public function set_borrow_book($form_data){

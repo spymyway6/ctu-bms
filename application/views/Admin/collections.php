@@ -35,9 +35,14 @@
                                             <div class="form-group"> 
                                                 <label for="field-1" class="control-label">Select Category * </label>
                                                 <select name="select_category" id="select_category" onchange="selectCategory(this)" class="form-control">
-                                                    <option value="All">All Category</option>
-                                                    <option value="Autobiography" <?=(isset($_GET['category']) && $_GET['category'] == 'Autobiography') ? 'selected' : ''?>>Autobiography  </option>
-                                                    <option value="Biography" <?=(isset($_GET['category']) && $_GET['category'] == 'Biography') ? 'selected' : ''?>>Biography </option>
+                                                    <?php if($categories){ ?>
+                                                        <option value="All">All Category</option>
+                                                        <?php foreach($categories as $cat){ ?>
+                                                            <option value="<?=$cat['category_id']; ?>" <?=(isset($_GET['category']) && $_GET['category'] == $cat['category_id']) ? 'selected' : ''?>><?=$cat['category_name']; ?></option>
+                                                        <?php } ?>
+                                                    <?php }else{ ?>
+                                                        <option value="All">All Category</option>
+                                                    <?php } ?>
                                                 </select>
                                             </div> 
                                         </div>
@@ -71,7 +76,7 @@
                                                         <td><?=$col['accession_no']?></td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['author']?></td>
-                                                        <td><?=$col['category']?></td>
+                                                        <td><?=$col['category_name']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
                                                         <td class="text-center"><?=($col['status'] == 'Active') ? '<span class="badge badge-primary">'.$col['status'].'</span>' : '<span class="badge badge-danger">Inactive</span>'?> </td>
                                                         <td class="text-center">
@@ -129,8 +134,8 @@
                                             </div>
                                             <div class="col-md-12"> 
                                                 <div class="form-group"> 
-                                                    <label for="field-1" class="control-label">Accession No. *</label> 
-                                                    <input type="text" class="form-control numOnly" name="accession_no" id="accession_no" placeholder="Accession No" required>
+                                                    <label for="field-1" class="control-label">Accession No. (ex. <?=uniqid();?>)*</label> 
+                                                    <input type="text" class="form-control" name="accession_no" id="accession_no" placeholder="Accession No" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,8 +148,8 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="field-2" class="control-label">Other Author *</label>
-                                                    <input type="text" class="form-control" name="other_author" id="other_author" placeholder="Other Author" required>
+                                                    <label for="field-2" class="control-label">Other Author</label>
+                                                    <input type="text" class="form-control" name="other_author" id="other_author" placeholder="Other Author">
                                                 </div>
                                             </div>
                                         </div>
@@ -171,8 +176,8 @@
                                             </div>
                                             <div class="col-md-12"> 
                                                 <div class="form-group"> 
-                                                    <label for="field-1" class="control-label">Location *</label> 
-                                                    <input type="text" class="form-control" name="location" id="location" placeholder="Location" required>
+                                                    <label for="field-1" class="control-label">Location</label> 
+                                                    <input type="text" class="form-control" name="location" id="location" placeholder="Location">
                                                 </div>
                                             </div>
                                         </div>
@@ -181,17 +186,13 @@
                                                 <div class="form-group"> 
                                                     <label for="field-1" class="control-label">Category * </label>
                                                     <select name="category" id="category" class="form-control">
-                                                        <option value="Autobiography">Autobiography  </option>
-                                                        <option value="Biography">Biography </option>
-                                                        <option value="Cooking">Cooking  </option>
-                                                        <option value="Art & Photography">Art & Photography</option>
-                                                        <option value="Personal Development">Personal Development </option>
-                                                        <option value="Detective & Mystery">Detective & Mystery</option>
-                                                        <option value="History">History</option>
-                                                        <option value="Crafts, Hobbies & Home">Crafts, Hobbies & Home </option>
-                                                        <option value="Families & Relationships">Families & Relationships</option>
-                                                        <option value="Humor & Entertainment">Humor & Entertainment</option>
-                                                        <option value="Business & Money">Business & Money</option>
+                                                        <?php if($categories){ ?>
+                                                            <?php foreach($categories as $cat){ ?>
+                                                                <option value="<?=$cat['category_id']; ?>"><?=$cat['category_name']; ?></option>
+                                                            <?php } ?>
+                                                        <?php }else{ ?>
+                                                            <option value="">No Categories Added</option>
+                                                        <?php } ?>
                                                     </select>
                                                 </div> 
                                             </div>
@@ -214,12 +215,10 @@
                                             </div>
                                         </div>
                                         <!-- Other Fields -->
-                                        <input type="hidden" id="book_id" name="book_id"> 
-                                        <input type="hidden" id="available" name="available"> 
-                                        <input type="hidden" id="unavailable" name="unavailable"> 
+                                        <input type="hidden" id="book_id" name="book_id">
                                     </div>
                                     <div class="modal-footer"> 
-                                        <button type="button" class="btn btn-success waves-effect waves-light saveBtn" onclick="saveCollection(this)"><i class="fa fa-user-plus"></i> Save</button> 
+                                        <button type="button" class="btn btn-success waves-effect waves-light saveBtn" onclick="saveCollection(this)"><i class="fa fa-save"></i> Save</button> 
                                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button> 
                                     </div> 
                                 </form>
@@ -242,7 +241,7 @@
         <script>
             $(document).ready(function() {
                 $('#collectionsTable').DataTable({
-                    "order": [[ 5, "desc" ]]
+                    "order": [[ 2, "asc" ]]
                 });
                 $('.image-popup').magnificPopup({
                     type: 'image',

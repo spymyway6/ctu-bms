@@ -68,7 +68,7 @@
                                                             <div class="btn-group">
                                                                 <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
                                                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                                    <li><a href="javascript:;" onclick="editStudent(<?=$col['id']?>)">Edit</a></li>
+                                                                    <li><a href="javascript:;" onclick="editUser(<?=$col['id']?>)">Edit</a></li>
                                                                 </ul>
                                                             </div>
                                                         </td>

@@ -35,6 +35,7 @@ class Admin extends CI_Controller {
 			$data['is_page'] = 'admin/collections';
             $data['page_name'] = 'Collections';
             $data['collections'] = $this->admin_model->get_collections();
+            $data['categories'] = $this->admin_model->get_active_categories();
             $this->load->view('Admin/collections', $data);
 		}else{
             redirect('login');
