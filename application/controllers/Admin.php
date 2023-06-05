@@ -132,7 +132,7 @@ class Admin extends CI_Controller {
 
     public function pages($page_id=''){
         if($this->session->userdata('id') && $this->session->userdata('role')==1){
-			$data['is_page'] = 'admin/pages';
+			$data['is_page'] = 'admin/pages/'.$page_id;
             $data['page_name'] = 'Page Lists';
             $data['page'] = $this->admin_model->get_specific_page($page_id);
             $this->load->view('Admin/pages', $data);

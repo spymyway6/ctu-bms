@@ -49,10 +49,12 @@
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a href="#" class="waves-effect <?=($is_page=='admin/pages') ? 'active' : ''; ?>"><i class="ti-link"></i> <span> Page Settings </span> </a>
+                    <a href="#" class="waves-effect"><i class="ti-link"></i> <span> Page Settings </span> </a>
                     <ul class="list-unstyled">
                         <?php foreach($get_pages as $page){ ?>
-                            <li><a href="<?=base_url();?>admin/pages/<?=$page['id']?>"><?=$page['page_name']?></a></li>
+                            <li>
+                                <a href="<?=base_url();?>admin/pages/<?=$page['id']?>" class="waves-effect <?=($is_page=='admin/pages/'.$page['id']) ? 'active' : ''; ?>"><?=$page['page_name']?></a>
+                            </li>
                         <?php } ?>
                     </ul>
                 </li>
