@@ -162,6 +162,9 @@ class Admin_model extends CI_Model {
 
     public function get_collections(){
         $this->db->select('*')->from('books');
+        if(isset($_GET['category'])){
+            $this->db->where('category', $_GET['category']);
+        }
         return $this->db->get()->result_array();
     }
 

@@ -27,6 +27,19 @@
                                     <p class="text-muted m-b-30 font-13">
                                         List of all your the books inside the library.
                                     </p>
+                                    <!-- Select Category -->
+                                    <div class="row"> 
+                                        <div class="col-md-12"> 
+                                            <div class="form-group"> 
+                                                <label for="field-1" class="control-label">Select Category * </label>
+                                                <select name="select_category" id="select_category" onchange="selectCategory(this)" class="form-control">
+                                                    <option value="All">All Category</option>
+                                                    <option value="Autobiography" <?=(isset($_GET['category']) && $_GET['category'] == 'Autobiography') ? 'selected' : ''?>>Autobiography  </option>
+                                                    <option value="Biography" <?=(isset($_GET['category']) && $_GET['category'] == 'Biography') ? 'selected' : ''?>>Biography </option>
+                                                </select>
+                                            </div> 
+                                        </div>
+                                    </div>
                                     <div class="tbl-responsive">
                                         <table id="collectionsTable" class="table table-hover table-bordered table-actions-bar m-b-0">
                                             <thead>

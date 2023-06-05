@@ -578,3 +578,11 @@ function savePageSettings(e){
         });
     }
 }
+
+function selectCategory(e){
+    if($(e).val() == 'All'){
+        window.location.href = base_url + 'admin/collections';
+    }else{
+        window.location.href = base_url + 'admin/collections?category='+$(e).val();
+    }
+}

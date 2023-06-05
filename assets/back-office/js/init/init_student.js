@@ -157,3 +157,11 @@ function saveProfileSettings(e){
         });
     }
 }
+
+function selectCategory(e){
+    if($(e).val() == 'All'){
+        window.location.href = base_url + 'student/collections';
+    }else{
+        window.location.href = base_url + 'student/collections?category='+$(e).val();
+    }
+}
