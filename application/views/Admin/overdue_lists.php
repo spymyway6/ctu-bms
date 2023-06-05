@@ -37,7 +37,8 @@
                                                     <th>Book Name</th>
                                                     <th>Category</th>
                                                     <th>Date Borrowed</th>
-                                                    <th>Expiry Date</th>
+                                                    <th>Overdue Date</th>
+                                                    <th>Status</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
@@ -65,12 +66,10 @@
                                                         <td><?=$col['category']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
                                                         <td><?=date('M d, Y', strtotime($col['expiry_date']))?></td>
+                                                        <td class="text-center"><span class="badge badge-danger">Overdue</span></td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
-                                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                                    <li><a href="javascript:;" onclick="returnCollection(<?=$col['issue_id']?>, <?=$col['id']?>, <?=$col['available']?>, <?=$col['unavailable']?>)">Mark as Return</a></li>
-                                                                </ul>
+                                                                <button type="button" onclick="returnCollection(<?=$col['issue_id']?>, <?=$col['id']?>)" class="btn btn-success waves-effect waves-light btn-sm"><i class="ti-check"></i> Mark as Return</button>
                                                             </div>
                                                         </td>
                                                     </tr>
