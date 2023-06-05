@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 05, 2023 at 11:22 AM
+-- Generation Time: Jun 05, 2023 at 02:31 PM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -38,7 +38,6 @@ CREATE TABLE `books` (
   `copyright_date` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `location` text COLLATE utf8mb4_general_ci NOT NULL,
   `quantity` int NOT NULL,
-  `available` int NOT NULL,
   `unavailable` int NOT NULL,
   `category` text COLLATE utf8mb4_general_ci NOT NULL,
   `book_image` text COLLATE utf8mb4_general_ci NOT NULL,
@@ -51,20 +50,19 @@ CREATE TABLE `books` (
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `accession_no`, `book_name`, `author`, `other_author`, `edition`, `publish_date`, `copyright_date`, `location`, `quantity`, `available`, `unavailable`, `category`, `book_image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'AN-2023-06-1', 'Save the book 1', 'MJj', 'John', '1st Edition', '2023-06-17', '2023-06-02', 'Mandaue', 2, 1, 1, 'Business & Money', 'p_64797e9cdc0da.jpg', 'Active', '2023-06-02 03:29:56', '2023-06-04 16:25:38'),
-(2, 'AN-2023-06-2', 'My Jenyy', 'John', 'Loyd', '2nd', '2023-06-16', '2023-05-29', 'Basak', 2, 1, 1, 'Personal Development', '', 'Active', '2023-06-02 03:31:42', '2023-06-04 16:25:42'),
-(3, 'AN-2023-06-3', 'Book2', 'wqwe', 'qwe', 'qwe', '2023-06-16', '2023-06-08', 'qwe', 4, 4, 0, 'Autobiography', '', 'Active', '2023-06-02 03:32:46', '2023-06-05 06:06:01'),
-(4, 'AN-2023-06-4', 'Change Image', 'awe', 'qwe', 'qwe', '2023-06-03', '2023-05-31', 'qwe', 2, 2, 0, 'Autobiography', 'p_6479811ecd5f3.jpg', 'Inactive', '2023-06-02 03:33:19', '2023-06-02 06:27:01'),
-(5, 'AN-2023-06-5', 'book4', 'qwe', 'qwe', 'qwe', '2023-06-01', '2023-06-03', 'qwe', 3, 3, 0, 'Autobiography', 'p_64797dc79a16e.jpg', 'Active', '2023-06-02 03:36:52', '2023-06-05 11:11:38'),
-(6, 'AN-2023-06-6', 'book5', 'qwe', 'qwe', 'qwe', '2023-06-03', '2023-06-03', 'wqe', 2, 2, 0, 'Autobiography', '', 'Inactive', '2023-06-02 03:37:30', '2023-06-02 06:27:19'),
-(7, 'AN-2023-06-7', 'Save the book 5', 'MJj', '3', 'qwe', '2023-06-03', '2023-06-16', 'qwe', 3, 3, 0, 'Business & Money', 'p_64797fa66213e.jpg', 'Inactive', '2023-06-02 05:35:34', '2023-06-02 09:42:44'),
-(8, '2023-06-02-8', 'Save the book 2323', 'MJj', 'John', '1st Edition', '2023-06-08', '2023-06-13', 'Mandaue', 23, 23, 0, 'Autobiography', '', 'Active', '2023-06-02 05:43:31', '2023-06-02 06:27:24'),
-(9, '2323', 'Save the book 1', 'MJj', 'qwe-edit', '1st Edition', '2023-06-02', '2023-06-01', 'qwe', 3, 3, 0, 'Autobiography', '', 'Active', '2023-06-02 05:45:45', '2023-06-02 06:27:26'),
-(10, '2323', 'Save the book 2323', 'MJj', 'qwe', '1st Edition', '2023-06-02', '2023-07-05', 'Mandaue', 23, 23, 0, 'Business & Money', '', 'Active', '2023-06-02 06:20:21', '2023-06-02 06:27:29'),
-(11, '2323', 'Save the book 2323', 'MJj', 'qwe', '1st Edition', '2023-06-02', '2023-07-05', 'Mandaue', 23, 22, 0, 'Business & Money', '', 'Active', '2023-06-02 06:20:33', '2023-06-04 15:38:53'),
-(12, '232323', 'MJ Book 1', 'John', 'Weak', '1st Edition', '2023-06-03', '2023-06-30', 'qwe', 2, 5, 0, 'Humor & Entertainment', 'p_64798b46aa416.jpg', 'Active', '2023-06-02 06:25:10', '2023-06-04 15:42:15'),
-(13, '2224422', 'MJ Book 2 Edit', 'MJj', 'John', '1st Edition', '2023-06-03', '2023-06-17', 'Mandaue', 2, 0, 0, 'Humor & Entertainment', '', 'Active', '2023-06-04 15:43:22', '2023-06-05 05:55:44');
+INSERT INTO `books` (`id`, `accession_no`, `book_name`, `author`, `other_author`, `edition`, `publish_date`, `copyright_date`, `location`, `quantity`, `unavailable`, `category`, `book_image`, `status`, `created_at`, `updated_at`) VALUES
+(1, '647dd7428cd46', 'To Kill a Mockingbird', 'Harper Lee', 'N/A', '1st Edition', '1960-06-08', '2023-06-05', 'Mandaue', 2, 0, '1', 'p_647dd7998914b.jpg', 'Active', '2023-06-05 12:39:28', '2023-06-05 12:39:53'),
+(2, '647dd79b1c1c6', '1984 by George Orwell', 'George Orwell', 'N/A', '1st Edition', '1999-06-07', '2023-06-06', 'Mandaue', 1, 0, '1', 'p_647dd826c38ab.jpg', 'Active', '2023-06-05 12:41:23', '2023-06-05 13:59:16'),
+(3, '647dd7f64f413', 'Pride and Prejudice', 'Jane Austen', '', '1st Edition', '1812-06-08', '1823-06-27', '', 1, 0, '8', 'p_647dd82d0425d.jpg', 'Active', '2023-06-05 12:42:07', '2023-06-05 13:59:27'),
+(4, '647dd82e23253', 'The Great Gatsby', 'F. Scott Fitzgerald', '', '1st Edition', '1892-06-14', '1985-05-31', '', 1, 0, '2', 'p_647dd85c2f5ea.jpg', 'Active', '2023-06-05 12:43:00', '2023-06-05 12:43:08'),
+(5, '647dd85d52c57', 'The Catcher in the Rye', 'J.D. Salinger', '', '1st Edition', '1923-06-07', '1990-06-07', '', 3, 0, '9', 'p_647dd8877c350.jpg', 'Active', '2023-06-05 12:43:45', '2023-06-05 12:43:51'),
+(6, '647dd888a43aa', 'To the Lighthouse', 'Virginia Woolf', 'John Virginia Woolf', '1st Edition', '1998-06-08', '1998-06-26', '', 1, 0, '10', 'p_647dd8aedc933.jpg', 'Active', '2023-06-05 12:44:30', '2023-06-05 12:44:30'),
+(7, '647dd8b1dda42', 'Moby-Dick', 'Herman Melville', '', '1st Edition', '1851-06-05', '1892-06-08', '', 2, 0, '7', 'p_647dd8e04b429.jpg', 'Active', '2023-06-05 12:45:20', '2023-06-05 12:45:20'),
+(8, '647dd8e36fdc8', 'The Lord of the Rings', 'J.R.R. Tolkien', '', '1st Edition', '1954-06-08', '2023-06-13', '', 1, 0, '3', 'p_647dd9170cdf6.jpg', 'Active', '2023-06-05 12:46:15', '2023-06-05 12:46:15'),
+(9, '647dd91846aaa', 'Jane Eyre', 'Charlotte Brontë', 'N/A', '1st Edition', '1974-06-14', '1923-05-31', '', 3, 0, '1', 'p_647dd959c9a72.jpg', 'Active', '2023-06-05 12:47:21', '2023-06-05 13:01:31'),
+(10, '647dd95cca416', 'The Hobbit', 'J.R.R. Tolkien', 'John', '1st Edition', '1990-06-06', '1892-06-13', '', 2, 0, '6', 'p_647dd98b90be8.jpg', 'Active', '2023-06-05 12:48:11', '2023-06-05 12:48:11'),
+(11, '647dd98e9956c', 'Brave New World', 'Aldous Huxley', '', '1st Edition', '1992-05-31', '1782-07-05', 'Mandaue', 2, 0, '1', 'p_647dd9bb58811.jpg', 'Active', '2023-06-05 12:48:59', '2023-06-05 13:59:19'),
+(12, '647dd9be94893', 'The Odyssey', 'Homer', 'John', '1st Edition', '2023-06-07', '2023-07-06', 'Basak', 1, 0, '5', 'p_647dd9e0c4693.jpg', 'Active', '2023-06-05 12:49:36', '2023-06-05 12:49:36');
 
 -- --------------------------------------------------------
 
@@ -85,12 +83,18 @@ CREATE TABLE `book_categories` (
 --
 
 INSERT INTO `book_categories` (`category_id`, `category_name`, `category_status`, `created_at`, `updated_at`) VALUES
-(1, 'Business & Money', 1, '2023-06-05 11:09:46', '2023-06-05 11:09:46'),
-(2, 'Personal Development', 1, '2023-06-05 11:09:54', '2023-06-05 11:09:54'),
-(3, 'Autobiography', 1, '2023-06-05 11:10:01', '2023-06-05 11:10:01'),
-(4, 'Humor & Entertainment', 1, '2023-06-05 11:11:55', '2023-06-05 11:11:55'),
-(5, 'New cat 1', 0, '2023-06-05 11:12:35', '2023-06-05 11:21:55'),
-(6, 'John Category 1 edit', 0, '2023-06-05 11:20:08', '2023-06-05 11:22:05');
+(1, 'Classic', 1, '2023-06-05 11:09:46', '2023-06-05 12:14:12'),
+(2, 'Modernist', 1, '2023-06-05 11:09:54', '2023-06-05 12:14:48'),
+(3, 'Fiction', 1, '2023-06-05 11:10:01', '2023-06-05 12:14:07'),
+(4, 'Dystopian', 1, '2023-06-05 11:11:55', '2023-06-05 12:14:21'),
+(5, 'Coming-of-Age', 1, '2023-06-05 11:12:35', '2023-06-05 12:14:41'),
+(6, 'Romance', 1, '2023-06-05 11:20:08', '2023-06-05 12:14:31'),
+(7, 'Stream of Consciousness', 1, '2023-06-05 12:14:53', '2023-06-05 12:14:53'),
+(8, 'Adventure', 1, '2023-06-05 12:15:00', '2023-06-05 12:15:00'),
+(9, 'Fantasy', 1, '2023-06-05 12:15:08', '2023-06-05 12:15:08'),
+(10, 'Epic', 1, '2023-06-05 12:15:12', '2023-06-05 12:15:12'),
+(11, 'Gothic', 1, '2023-06-05 12:15:17', '2023-06-05 12:15:17'),
+(12, 'Greek Mythology', 1, '2023-06-05 12:15:28', '2023-06-05 12:15:28');
 
 -- --------------------------------------------------------
 
@@ -115,14 +119,13 @@ CREATE TABLE `issue_book` (
 --
 
 INSERT INTO `issue_book` (`issue_id`, `user_id`, `book_id`, `request_type`, `request_status`, `expiry_date`, `return_date`, `created_at`, `updated_at`) VALUES
-(22, 2, 13, 1, 3, '2023-06-07', '2023-06-04', '2023-06-04 16:28:31', '2023-06-04 16:29:27'),
-(23, 2, 13, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 02:11:58', '2023-06-05 05:37:17'),
-(24, 5, 13, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 04:27:25', '2023-06-05 05:43:41'),
-(26, 3, 13, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 05:08:04', '2023-06-05 05:43:44'),
-(27, 3, 3, 1, 2, NULL, NULL, '2023-06-05 05:46:10', '2023-06-05 05:56:09'),
-(30, 3, 3, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 06:05:21', '2023-06-05 06:06:01'),
-(31, 3, 3, 1, 2, NULL, NULL, '2023-06-05 06:06:08', '2023-06-05 06:06:24'),
-(32, 3, 5, 1, 3, '2023-06-04', '2023-06-05', '2023-06-01 06:07:13', '2023-06-05 06:14:05');
+(1, 2, 2, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 13:02:00', '2023-06-05 13:09:48'),
+(2, 2, 3, 1, 3, '2023-06-04', '2023-06-05', '2023-06-05 13:11:22', '2023-06-05 13:15:46'),
+(3, 5, 3, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 13:12:17', '2023-06-05 13:59:14'),
+(4, 2, 2, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 13:20:44', '2023-06-05 13:59:16'),
+(5, 2, 3, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 13:36:26', '2023-06-05 13:59:26'),
+(7, 2, 11, 1, 3, '2023-06-08', '2023-06-05', '2023-06-05 13:41:35', '2023-06-05 13:59:18'),
+(8, 5, 2, 2, 2, NULL, NULL, '2023-06-05 13:44:31', '2023-06-05 13:58:57');
 
 -- --------------------------------------------------------
 
@@ -182,11 +185,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `contact`, `pic`, `status`, `department`, `address`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'MJCoupon', 'test4', 'johncloyd', '1tfe_coup_mja4@yopmail.com', '202cb962ac59075b964b07152d234b70', '09312149163', '', 'Active', 'Admin or Librarian', '576 Cedar Lane', 1, '2023-06-01 23:27:45', '2023-06-04 11:33:23'),
-(2, '1TFV MJ Coupon', '1TFV', 'merz', '1tfv_coup_mja40@yopmail.com', '4297f44b13955235245b2497399d7a93', '09312149163', '', 'Active', 'IT', '576 Cedar Lane', 2, '2023-06-01 23:27:45', '2023-06-04 10:48:14'),
-(3, 'Luedit', 'YiLuedit', 'luLuedit', 'luesdit@yopmail.com', '202cb962ac59075b964b07152d234b70', '0389338383823232232323', 'p_647c6314dfdb0.jpg', 'Active', 'ITLueditc', '576 Cedar LaneLuedit', 2, '2023-06-04 09:52:38', '2023-06-04 10:10:44'),
-(4, 'Mj', 'Pins', 'mj', 'mj@yopmail.com', '202cb962ac59075b964b07152d234b70', '03893383838', 'p_647c668229a58.jpg', 'Active', 'IT', '576 Cedar Lane', 1, '2023-06-04 10:25:06', '2023-06-04 10:25:06'),
-(5, 'Teacher', 'MJ', 'teacher', 'teacher@yopmail.com', '202cb962ac59075b964b07152d234b70', '231234123', 'p_647c7455a4680.jpg', 'Active', 'Teacher', '576 Cedar Lane', 3, '2023-06-04 10:41:27', '2023-06-04 11:24:05');
+(1, 'John Cloyd', 'Rosios', 'johncloyd', 'johncloyd@yopmail.com', '202cb962ac59075b964b07152d234b70', '09312149163', 'p_647dd6534f51f.jpg', 'Active', 'Developer', '576 Cedar Lane', 1, '2023-06-01 23:27:45', '2023-06-05 12:34:27'),
+(2, 'Student 1', 'Magalona', 'student1', 'student1@yopmail.com', '202cb962ac59075b964b07152d234b70', '09312149163', 'p_647dd4a26b6a1.jpg', 'Active', 'BSIT', '576 Cedar Lane', 2, '2023-06-01 23:27:45', '2023-06-05 12:27:14'),
+(3, 'Student 2', 'Lion', 'student2', 'student2@yopmail.com', '202cb962ac59075b964b07152d234b70', '09848589567', 'p_647dd49b29c4c.jpg', 'Active', 'BS-HRM', '576 Cedar LaneLuedit', 2, '2023-06-04 09:52:38', '2023-06-05 12:27:07'),
+(4, 'MJ', 'Pins', 'mj', 'mj@yopmail.com', '202cb962ac59075b964b07152d234b70', '093893383838', 'p_647dd6451385d.jpg', 'Active', 'Senior Developer', 'Basak, Mandaue City', 1, '2023-06-04 10:25:06', '2023-06-05 12:35:12'),
+(5, 'Teacher 1', 'Galoeqe', 'teacher', 'teacher@yopmail.com', '202cb962ac59075b964b07152d234b70', '0922998378', 'p_647dd431d840f.jpg', 'Active', 'Teacher in Math', '576 Cedar Lane', 3, '2023-06-04 10:41:27', '2023-06-05 12:25:21');
 
 --
 -- Indexes for dumped tables
@@ -230,19 +233,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `book_categories`
 --
 ALTER TABLE `book_categories`
-  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `issue_book`
 --
 ALTER TABLE `issue_book`
-  MODIFY `issue_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `issue_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pages`

@@ -1,6 +1,6 @@
 <?php 
-    $my_user_id = $this->session->userdata('id'); 
-    $img          = []; 
+    $my_user_id = $this->session->userdata('id');
+    $user_img = $this->session->userdata('pic');
 ?>
 <div class="topbar">
    <!-- LOGO -->
@@ -25,10 +25,8 @@
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true">
-                            <?php $myimg = 'user.png'; ?>
                             <div class="top-prof-img">
-                                <img src="<?=base_url();?>assets/back-office/images/<?=$myimg;?>" alt="Profile Image" style="border: 0;"
-                                >
+                                <img src="<?=($user_img) ? base_url().'assets/uploads/users/'.$user_img : base_url().'assets/uploads/default.png';?>" alt="Profile Image" style="border: 0;">
                             </div>
                         </a>
                         <ul class="dropdown-menu">
