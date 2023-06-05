@@ -52,17 +52,29 @@
                                                             </a>
                                                         </td>
                                                         <td><?=$col['accession_no']?></td>
-                                                        <td><?=$col['firstname']?> <?=$col['lastname']?></td>
+                                                        <td>
+                                                            <span><b><?=$col['firstname']?> <?=$col['lastname']?></b></span>
+                                                            <div class="available-status">
+                                                                <p class="m-t-0">
+                                                                    <span class="text-success"><b>Department:</b> <?=($col['department']) ? $col['department'] : '-'; ?></span>
+                                                                    <span class="text-success"><b>Role:</b> <?=($col['role'] == 1) ? 'Admin/Lirabrian' : (($col['role'] == 2) ? 'Student' : "Teacher"); ?></span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['category']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
                                                         <td><?=date('M d, Y', strtotime($col['expiry_date']))?></td>
                                                         <td class="text-center">
-                                                            <div class="btn-group">
+                                                            <!-- <div class="btn-group">
                                                                 <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
                                                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                                                     <li><a href="javascript:;" onclick="returnCollection(<?=$col['issue_id']?>, <?=$col['id']?>, <?=$col['available']?>, <?=$col['unavailable']?>)">Mark as Return</a></li>
                                                                 </ul>
+                                                            </div> -->
+
+                                                            <div class="btn-group">
+                                                                <button type="button" onclick="returnCollection(<?=$col['issue_id']?>, <?=$col['id']?>)" class="btn btn-success waves-effect waves-light btn-sm"><i class="ti-check"></i> Mark as Return</button>
                                                             </div>
                                                         </td>
                                                     </tr>

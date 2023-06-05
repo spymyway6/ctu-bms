@@ -36,13 +36,14 @@
                                                     <th>Student Name</th>
                                                     <th>Book Name</th>
                                                     <th>Category</th>
-                                                    <th>Date Borrowed</th>
-                                                    <th>Return Date</th>
+                                                    <th>Date Reserved</th>
+                                                    <th>Available</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach($reserved_collections as $col){ ?>
+                                                    <?php $available = $col['quantity'] - $col['unavailable']; ?>
                                                     <tr>
                                                         <td>
                                                             <a href="<?=($col['book_image']) ? base_url().'assets/uploads/books/'.$col['book_image'] : base_url().'assets/uploads/default.png';?>" class="image-popup">
@@ -52,17 +53,35 @@
                                                             </a>
                                                         </td>
                                                         <td><?=$col['accession_no']?></td>
-                                                        <td><?=$col['firstname']?> <?=$col['lastname']?></td>
+                                                        <td>
+                                                            <span><b><?=$col['firstname']?> <?=$col['lastname']?></b></span>
+                                                            <div class="available-status">
+                                                                <p class="m-t-0">
+                                                                    <span class="text-success"><b>Department:</b> <?=($col['department']) ? $col['department'] : '-'; ?></span>
+                                                                    <span class="text-success"><b>Role:</b> <?=($col['role'] == 1) ? 'Admin/Lirabrian' : (($col['role'] == 2) ? 'Student' : "Teacher"); ?></span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['category']?></td>
-                                                        <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
-                                                        <td><?=date('M d, Y', strtotime($col['expiry_date']))?></td>
+                                                        <td><?=date('M d, Y', strtotime($col['updated_at']))?></td>
+                                                        <td class="text-center">
+                                                            <div class="available-status">
+                                                                <?=($available) ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-danger">No</span>'?>
+                                                                <p>
+                                                                    <span class="text-primary">Available: <b><?=$available; ?></b></span>
+                                                                    <span class="text-danger">Unavailable: <b><?=$col['unavailable']; ?></b></span>
+                                                                    <span class="text-inverse"><b>Total: <?=$col['quantity']; ?></b></span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
-                                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                                    <li><a href="javascript:;" onclick="markAsBorrowed(<?=$col['issue_id']?>, <?=$col['id']?>, <?=$col['available']?>, <?=$col['unavailable']?>)">Mark as Borrowed</a></li>
-                                                                </ul>
+                                                                <?php if($available){ ?>
+                                                                    <button type="button" onclick="markAsBorrowed(<?=$col['issue_id']?>, <?=$col['id']?>)" class="btn btn-success waves-effect waves-light btn-sm"><i class="ti-check"></i> Mark as Borrowed </button>
+                                                                <?php }else{ ?>
+                                                                    <button type="button" disabled class="btn btn-danger btn-sm"><i class="ti-na"></i> Unavailable </button>
+                                                                <?php } ?>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -218,7 +237,7 @@
         <script>
             $(document).ready(function() {
                 $('#collectionsTable').DataTable({
-                    "order": [[ 6, "desc" ]]
+                    "order": [[ 5, "desc" ]]
                 });
                 $('.image-popup').magnificPopup({
                     type: 'image',

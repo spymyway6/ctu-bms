@@ -157,10 +157,10 @@ var readURL = (input)=> {
     }   
 }
 
-function setRequestStaus(id, book_id, status, statusName, availableQTY, unavailableQTY, request_type){
+function setRequestStaus(issue_id, request_status, request_type){
     swal({
-        title: `${statusName} request?`,
-        text: `Are you sure you want to ${statusName} this request?`,
+        title: `${request_status} request?`,
+        text: `Are you sure you want to ${request_status} this request?`,
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes, please!",
@@ -172,12 +172,9 @@ function setRequestStaus(id, book_id, status, statusName, availableQTY, unavaila
             type: "POST",
             url: base_url+'admin/set_request_status',
             data: {
-                issue_id: id,
-                book_id: book_id,
-                status: status,
-                availableQTY: availableQTY,
-                unavailableQTY: unavailableQTY,
-                request_type: request_type,
+                issue_id: issue_id,
+                request_status: request_status,
+                request_type: request_type
             },
             success: (resp) => {
                 var res = JSON.parse(resp);
@@ -198,13 +195,13 @@ function setRequestStaus(id, book_id, status, statusName, availableQTY, unavaila
     });
 }
 
-function returnCollection(issue_id, book_id, availableQTY, unavailableQTY){
+function returnCollection(issue_id, book_id){
     swal({
         title: `Is the book returned?`,
         text: `Make sure that the book they are returning is correct.`,
         type: "warning",
         showCancelButton: true,
-        confirmButtonText: "Yes, mark as return!",
+        confirmButtonText: "Yes, It is returned!",
         closeOnConfirm: false,
         confirmButtonColor: "#e11641",
         showLoaderOnConfirm: true
@@ -215,8 +212,6 @@ function returnCollection(issue_id, book_id, availableQTY, unavailableQTY){
             data: {
                 issue_id: issue_id,
                 book_id: book_id,
-                availableQTY: availableQTY,
-                unavailableQTY: unavailableQTY,
             },
             success: (resp) => {
                 var res = JSON.parse(resp);
@@ -237,7 +232,7 @@ function returnCollection(issue_id, book_id, availableQTY, unavailableQTY){
     });
 }
 
-function markAsBorrowed(issue_id, book_id, availableQTY, unavailableQTY){
+function markAsBorrowed(issue_id, book_id){
     swal({
         title: `Mark as Borrowed?`,
         text: `Mark this book as borrowed.`,
@@ -253,9 +248,7 @@ function markAsBorrowed(issue_id, book_id, availableQTY, unavailableQTY){
             url: base_url+'admin/mark_as_borrowed',
             data: {
                 issue_id: issue_id,
-                book_id: book_id,
-                availableQTY: availableQTY,
-                unavailableQTY: unavailableQTY,
+                book_id: book_id
             },
             success: (resp) => {
                 var res = JSON.parse(resp);

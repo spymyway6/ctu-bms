@@ -23,9 +23,9 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-                                    <h4 class="m-t-0 header-title"><b>My Borrowed Collection</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>My Reserved  Collections</b></h4>
                                     <p class="text-muted m-b-30 font-13">
-                                        List of all your the books your borrowed inside the library.
+                                        List of all your the books you've reserved inside the library.
                                     </p>
                                     <div class="tbl-responsive">
                                         <table id="collectionsTable" class="table table-hover table-bordered table-actions-bar m-b-0">
@@ -33,16 +33,16 @@
                                                 <tr>
                                                     <th class="text-center">Image</th>
                                                     <th>Accession No.</th>
-                                                    <th>Student Name</th>
                                                     <th>Book Name</th>
                                                     <th>Category</th>
-                                                    <th>Date Borrowed</th>
-                                                    <th>Return Date</th>
+                                                    <th>Date Reserved</th>
+                                                    <th>Available</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach($reserved_collections as $col){ ?>
+                                                    <?php $available = $col['quantity'] - $col['unavailable']; ?>
                                                     <tr>
                                                         <td>
                                                             <a href="<?=($col['book_image']) ? base_url().'assets/uploads/books/'.$col['book_image'] : base_url().'assets/uploads/default.png';?>" class="image-popup">
@@ -52,17 +52,22 @@
                                                             </a>
                                                         </td>
                                                         <td><?=$col['accession_no']?></td>
-                                                        <td><?=$col['firstname']?> <?=$col['lastname']?></td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['category']?></td>
-                                                        <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
-                                                        <td><?=date('M d, Y', strtotime($col['expiry_date']))?></td>
+                                                        <td><?=date('M d, Y', strtotime($col['updated_at']))?></td>
+                                                        <td class="text-center">
+                                                            <div class="available-status">
+                                                                <?=($available) ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-danger">No</span>'?>
+                                                                <p>
+                                                                    <span class="text-primary">Available: <b><?=$available; ?></b></span>
+                                                                    <span class="text-danger">Unavailable: <b><?=$col['unavailable']; ?></b></span>
+                                                                    <span class="text-inverse"><b>Total: <?=$col['quantity']; ?></b></span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
-                                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                                    <li><a href="javascript:;" onclick="editCollection(<?=$col['id']?>)">View</a></li>
-                                                                </ul>
+                                                                <button type="button" onclick="editCollection(<?=$col['id']?>)" class="btn btn-primary waves-effect waves-light btn-sm"><i class="ti-zoom-in"></i> View Details</button>
                                                             </div>
                                                         </td>
                                                     </tr>

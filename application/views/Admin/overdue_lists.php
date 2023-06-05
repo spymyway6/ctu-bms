@@ -52,7 +52,15 @@
                                                             </a>
                                                         </td>
                                                         <td><?=$col['accession_no']?></td>
-                                                        <td><?=$col['firstname']?> <?=$col['lastname']?></td>
+                                                        <td>
+                                                            <span><b><?=$col['firstname']?> <?=$col['lastname']?></b></span>
+                                                            <div class="available-status">
+                                                                <p class="m-t-0">
+                                                                    <span class="text-success"><b>Department:</b> <?=($col['department']) ? $col['department'] : '-'; ?></span>
+                                                                    <span class="text-success"><b>Role:</b> <?=($col['role'] == 1) ? 'Admin/Lirabrian' : (($col['role'] == 2) ? 'Student' : "Teacher"); ?></span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['category']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at']))?></td>

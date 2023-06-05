@@ -66,32 +66,52 @@ class Student_model extends CI_Model {
                     'message' => 'You have reached the 3 maximum amount of requested or borrowed books.'
                 );
             }else{
-                $data = array(
-                    'user_id'        => $this->session->userdata('id'),
-                    'book_id'        => $form_data['id'],
-                    'request_type'   => ($form_data['request_type']=='Borrow') ? 1 : 2,
-                    'request_status' => 0,
-                );
-                $this->db->insert('issue_book', $data);
-                return array(
-                    'status' => true,
-                    'data' => [],
-                    'message' => 'Book requested successfully!'
-                );
+                // Check if available
+                $this->db->select('*')->from('books')->where('id', $form_data['id']);
+                $get_book = $this->db->get()->row_array();
+
+                if($get_book['quantity'] == $get_book['unavailable']){
+                    $data = array(
+                        'user_id'        => $this->session->userdata('id'),
+                        'book_id'        => $form_data['id'],
+                        'request_type'   => 2,
+                        'request_status' => 0,
+                    );
+                    $this->db->insert('issue_book', $data);
+                    return array(
+                        'status' => true,
+                        'data' => [],
+                        'message' => 'Book reserved successfully!'
+                    );
+                }else{
+                    $data = array(
+                        'user_id'        => $this->session->userdata('id'),
+                        'book_id'        => $form_data['id'],
+                        'request_type'   => 1,
+                        'request_status' => 0,
+                    );
+                    $this->db->insert('issue_book', $data);
+                    return array(
+                        'status' => true,
+                        'data' => [],
+                        'message' => 'Book requested successfully!'
+                    );
+                }
             }
         }
     }
 
     public function get_pending_requests(){
         $user_id = $this->session->userdata('id');
-        $this->db->select('a.*, b.*')->from('issue_book a')->where('user_id', $user_id)->where('request_status', 0);
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_status', 0)->where('user_id', $user_id); // Pending
         $this->db->join('books b', 'b.id = a.book_id', 'left');
+        $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
     }
 
     public function get_borrowed_collections(){
         $user_id = $this->session->userdata('id');
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a')->where('request_type', 1)->where('request_status', 1)->where('user_id', $user_id);
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_type', 1)->where('request_status', 1)->where('user_id', $user_id);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
@@ -99,7 +119,7 @@ class Student_model extends CI_Model {
 
     public function get_reserved_collections(){
         $user_id = $this->session->userdata('id');
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a')->where('request_type', 2)->where('request_status', 1)->where('user_id', $user_id);
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_type', 2)->where('request_status', 1)->where('user_id', $user_id);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
@@ -107,7 +127,7 @@ class Student_model extends CI_Model {
 
     public function get_history(){
         $user_id = $this->session->userdata('id');
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a')->where('user_id', $user_id);
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('user_id', $user_id);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
@@ -116,7 +136,7 @@ class Student_model extends CI_Model {
     public function get_overdue_lists(){
         $toDate = date('Y-m-d');
         $user_id = $this->session->userdata('id');
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a')->where('user_id', $user_id);
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('user_id', $user_id);
         $this->db->where('STR_TO_DATE(expiry_date, "%Y-%m-%d") <', $toDate);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');

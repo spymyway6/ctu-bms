@@ -36,15 +36,17 @@
                                                     <th>Student Name</th>
                                                     <th>Book Name</th>
                                                     <th>Category</th>
-                                                    <th>Date Published</th>
-                                                    <th>Available</th>
-                                                    <th>Unavailable</th>
+                                                    <th>Request Date</th>
+                                                    <th>Return Date</th>
                                                     <th>Request Type</th>
                                                     <th>Status</th>
+                                                    <th>Available</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach($history as $col){ ?>
+                                                    <?php $available = $col['quantity'] - $col['unavailable']; ?>
                                                     <tr>
                                                         <td>
                                                             <a href="<?=($col['book_image']) ? base_url().'assets/uploads/books/'.$col['book_image'] : base_url().'assets/uploads/default.png';?>" class="image-popup">
@@ -57,9 +59,8 @@
                                                         <td><?=$col['firstname']?> <?=$col['lastname']?></td>
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['category']?></td>
-                                                        <td><?=$col['publish_date']?></td>
-                                                        <td class="text-center"><?=$col['available']?></td>
-                                                        <td class="text-center"><?=$col['unavailable']?></td>
+                                                        <td><?=date('M d, Y', strtotime($col['created_at'])); ?></td>
+                                                        <td><?=($col['return_date']) ? date('M d, Y', strtotime($col['return_date'])) : '-'; ?></td>
                                                         <td class="text-center"><?=($col['request_type'] == 1) ? '<span class="badge badge-info">Borrow</span>' : '<span class="badge badge-primary">Reserve</span>'; ?></td>
                                                         <td class="text-center">
                                                             <?=($col['request_status'] == 1) ? '<span class="badge badge-success">Approved</span>' : (
@@ -67,6 +68,21 @@
                                                                     ($col['request_status'] == 3) ? '<span class="badge badge-primary">Returned</span>' : '<span class="badge badge-warning">Pending</span>'
                                                                 )
                                                             )?>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="available-status">
+                                                                <?=($available) ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-danger">No</span>'?>
+                                                                <p>
+                                                                    <span class="text-primary">Available: <b><?=$available; ?></b></span>
+                                                                    <span class="text-danger">Unavailable: <b><?=$col['unavailable']; ?></b></span>
+                                                                    <span class="text-inverse"><b>Total: <?=$col['quantity']; ?></b></span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="btn-group">
+                                                                <button type="button" onclick="editCollection(<?=$col['id']?>)" class="btn btn-warning waves-effect waves-light btn-sm"><i class="ti-pencil"></i> Edit</button>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
@@ -221,7 +237,7 @@
         <script>
             $(document).ready(function() {
                 $('#collectionsTable').DataTable({
-                    "order": [[ 6, "desc" ]]
+                    "order": [[ 5, "desc" ]]
                 });
                 $('.image-popup').magnificPopup({
                     type: 'image',

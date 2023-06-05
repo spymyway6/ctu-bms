@@ -36,16 +36,15 @@
                                                     <th>Book Name</th>
                                                     <th>Author</th>
                                                     <th>Category</th>
-                                                    <th>Date Published</th>
-                                                    <th>Available</th>
-                                                    <th>Unavailable</th>
+                                                    <th>Date Requested</th>
                                                     <th>Request Type</th>
-                                                    <th>Status</th>
+                                                    <th>Available</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach($pending_requests as $col){ ?>
+                                                    <?php $available = $col['quantity'] - $col['unavailable']; ?>
                                                     <tr>
                                                         <td>
                                                             <a href="<?=($col['book_image']) ? base_url().'assets/uploads/books/'.$col['book_image'] : base_url().'assets/uploads/default.png';?>" class="image-popup">
@@ -58,11 +57,18 @@
                                                         <td><?=$col['book_name']?></td>
                                                         <td><?=$col['author']?></td>
                                                         <td><?=$col['category']?></td>
-                                                        <td><?=$col['publish_date']?></td>
-                                                        <td class="text-center"><?=$col['available']?></td>
-                                                        <td class="text-center"><?=$col['unavailable']?></td>
-                                                        <td><?=($col['request_type'] == 1) ? 'Borrow' : 'Reserve'; ?></td>
-                                                        <td class="text-center"><?=($col['request_status']) ? '<span class="badge badge-success">Approved</span>' : '<span class="badge badge-warning">Pending</span>'?> </td>
+                                                        <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
+                                                        <td class="text-center"><?=($col['request_type'] == 1) ? '<span class="badge badge-info">Borrow</span>' : '<span class="badge badge-primary">Reserve</span>'; ?></td>
+                                                        <td class="text-center">
+                                                            <div class="available-status">
+                                                                <?=($available) ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-danger">No</span>'?>
+                                                                <p>
+                                                                    <span class="text-primary">Available: <b><?=$available; ?></b></span>
+                                                                    <span class="text-danger">Unavailable: <b><?=$col['unavailable']; ?></b></span>
+                                                                    <span class="text-inverse"><b>Total: <?=$col['quantity']; ?></b></span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
                                                                 <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>

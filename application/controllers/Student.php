@@ -11,7 +11,7 @@ class Student extends CI_Controller {
         if($this->session->userdata('id') && ($this->session->userdata('role')==2 || $this->session->userdata('role')==3)){
 			$data['is_page'] = 'student/dashboard';
             $data['page_name'] = 'Dashboard';
-            $data['count_request'] = $this->admin_model->count_all_request();
+            $data['count_request'] = $this->student_model->count_all_request($this->session->userdata('id'));
             $this->load->view('Student/dashboard', $data);
 		}else{
             redirect('login');

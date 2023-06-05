@@ -59,10 +59,7 @@
                                                         <td><?=date('M d, Y', strtotime($col['expiry_date']))?></td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
-                                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                                    <li><a href="javascript:;" onclick="editCollection(<?=$col['id']?>)">View</a></li>
-                                                                </ul>
+                                                                <button type="button" onclick="editCollection(<?=$col['id']?>)" class="btn btn-primary waves-effect waves-light btn-sm"><i class="ti-zoom-in"></i> View Details</button>
                                                             </div>
                                                         </td>
                                                     </tr>

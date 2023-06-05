@@ -186,7 +186,7 @@ class Admin_model extends CI_Model {
     }
 
     public function get_latest_transactions(){
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a')->where('request_status', 0); // Pending
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_status', 0); // Pending
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         $this->db->limit(20);
@@ -194,28 +194,28 @@ class Admin_model extends CI_Model {
     }
 
     public function get_pending_requests(){
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a')->where('request_status', 0); // Pending
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_status', 0);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
     }
     
     public function get_borrowed_collections(){
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a')->where('request_type', 1)->where('request_status', 1);
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_type', 1)->where('request_status', 1);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
     }
 
     public function get_reserved_collections(){
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a')->where('request_type', 2)->where('request_status', 1);
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_type', 2)->where('request_status', 1);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
     }
 
     public function get_history(){
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a');
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a');
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
         return $this->db->get()->result_array();
@@ -223,7 +223,7 @@ class Admin_model extends CI_Model {
 
     public function get_overdue_lists(){
         $toDate = date('Y-m-d');
-        $this->db->select('a.*, b.*, c.firstname, c.lastname')->from('issue_book a');
+        $this->db->select('a.*, b.*, c.firstname, c.lastname, c.department, c.role')->from('issue_book a');
         $this->db->where('STR_TO_DATE(expiry_date, "%Y-%m-%d") <', $toDate);
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
@@ -246,36 +246,44 @@ class Admin_model extends CI_Model {
     }
 
     public function set_request_status_model($form_data){
-        if($form_data['request_type'] == 1){
-            if($form_data['status'] == 1){
-                $data = array(
-                    'request_status' => 1,
-                    'expiry_date' => date('Y-m-d', strtotime("+3 days"))
-                );
-            }else{
-                $data = array(
-                    'request_status' => 2
-                );
-            }
-            $this->db->where('issue_id', $form_data['issue_id']);
-            $this->db->update('issue_book', $data);
-    
-            // Update Books
-            $books_data = array(
-                'available' => $form_data['availableQTY'] - 1,
-                'unavailable' => $form_data['unavailableQTY'] + 1,
-            );
-            $this->db->where('id', $form_data['book_id']);
-            $this->db->update('books', $books_data);
-        }else{
-            $data = array(
-                'request_status' => $form_data['status']
-            );
-            $this->db->where('issue_id', $form_data['issue_id']);
-            $this->db->update('issue_book', $data);
-        }
+        $this->db->select('*')->from('issue_book')->where('issue_id', $form_data['issue_id']);
+        $get_issue_book = $this->db->get()->row_array();
+        if($get_issue_book){
+            $get_book = $this->db->select('*')->from('books')->where('id', $get_issue_book['book_id'])->get()->row_array();
+            if($form_data['request_status'] == 'Approve'){ // Approve
+                if($form_data['request_type']==1){ // Borrow
+                    // Approve the request
+                    $issue_data = array(
+                        'request_status' => 1,
+                        'expiry_date' => date('Y-m-d', strtotime("+3 days"))
+                    );
+                    $this->db->where('issue_id', $form_data['issue_id']);
+                    $this->db->update('issue_book', $issue_data);
 
-        return true;
+                    // Update the books availability
+                    $book_data = array(
+                        'unavailable' => $get_book['unavailable'] + 1
+                    );
+                    $this->db->where('id', $get_issue_book['book_id']);
+                    $this->db->update('books', $book_data);
+                }else{ // Reserve the request
+                    $issue_data = array(
+                        'request_status' => 1,
+                    );
+                    $this->db->where('issue_id', $form_data['issue_id']);
+                    $this->db->update('issue_book', $issue_data);
+                }
+            }else{ // Decline
+                // Decline the request
+                $issue_data = array(
+                    'request_status' => 2,
+                );
+                $this->db->where('issue_id', $form_data['issue_id']);
+                $this->db->update('issue_book', $issue_data);
+            }
+            return true;
+        }
+        return false;
     }
 
     public function set_collection_to_return_model($form_data){
@@ -286,34 +294,33 @@ class Admin_model extends CI_Model {
         $this->db->where('issue_id', $form_data['issue_id']);
         $this->db->update('issue_book', $data);
 
-        // Update Books
-        $books_data = array(
-            'available' => $form_data['availableQTY'] + 1,
-            'unavailable' => $form_data['unavailableQTY'] - 1,
+        // Update the books availability
+        $get_book = $this->db->select('*')->from('books')->where('id', $form_data['book_id'])->get()->row_array();
+        $book_data = array(
+            'unavailable' => $get_book['unavailable'] - 1
         );
         $this->db->where('id', $form_data['book_id']);
-        $this->db->update('books', $books_data);
-
+        $this->db->update('books', $book_data);
         return true;
     }
 
     public function mark_as_borrowed_model($form_data){
-        $data = array(
-            'request_type' => 1,
+        $get_book = $this->db->select('*')->from('books')->where('id', $form_data['book_id'])->get()->row_array();
+        // Approve the request
+        $issue_data = array(
             'request_status' => 1,
+            'request_type' => 1,
             'expiry_date' => date('Y-m-d', strtotime("+3 days"))
         );
         $this->db->where('issue_id', $form_data['issue_id']);
-        $this->db->update('issue_book', $data);
+        $this->db->update('issue_book', $issue_data);
 
-        // Update Books
-        $books_data = array(
-            'available' => $form_data['availableQTY'] - 1,
-            'unavailable' => $form_data['unavailableQTY'] + 1,
+        // Update the books availability
+        $book_data = array(
+            'unavailable' => $get_book['unavailable'] + 1
         );
         $this->db->where('id', $form_data['book_id']);
-        $this->db->update('books', $books_data);
-
+        $this->db->update('books', $book_data);
         return true;
     }
 

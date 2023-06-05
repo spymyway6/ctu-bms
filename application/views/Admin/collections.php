@@ -40,13 +40,14 @@
                                                     <th>Author</th>
                                                     <th>Category</th>
                                                     <th>Date Added</th>
-                                                    <th>Quantity</th>
                                                     <th>Status</th>
+                                                    <th>Available</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach($collections as $col){ ?>
+                                                    <?php $available = $col['quantity'] - $col['unavailable']; ?>
                                                     <tr>
                                                         <td>
                                                             <a href="<?=($col['book_image']) ? base_url().'assets/uploads/books/'.$col['book_image'] : base_url().'assets/uploads/default.png';?>" class="image-popup">
@@ -60,8 +61,17 @@
                                                         <td><?=$col['author']?></td>
                                                         <td><?=$col['category']?></td>
                                                         <td><?=date('M d, Y', strtotime($col['created_at']))?></td>
-                                                        <td class="text-center"><?=$col['quantity']?></td>
                                                         <td class="text-center"><?=($col['status'] == 'Active') ? '<span class="badge badge-primary">'.$col['status'].'</span>' : '<span class="badge badge-danger">Inactive</span>'?> </td>
+                                                        <td class="text-center">
+                                                            <div class="available-status">
+                                                                <?=($available) ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-danger">No</span>'?>
+                                                                <p>
+                                                                    <span class="text-primary">Available: <b><?=$available; ?></b></span>
+                                                                    <span class="text-danger">Unavailable: <b><?=$col['unavailable']; ?></b></span>
+                                                                    <span class="text-inverse"><b>Total: <?=$col['quantity']; ?></b></span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
                                                         <td class="text-center">
                                                             <div class="btn-group">
                                                                 <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light btn-sm" data-toggle="dropdown" aria-expanded="false">Options <span class="caret"></span></button>
