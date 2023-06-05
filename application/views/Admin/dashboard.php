@@ -63,9 +63,13 @@
                                             <?php if($latest_transactions){ ?>
                                                 <?php foreach($latest_transactions as $lt){ ?>
                                                     <li>
-                                                        <i class="ti-upload text-success"></i>
-                                                        <span class="tran-text"><?=$lt['firstname']?> <?=$lt['lastname']?> - <?=$lt['book_name']?></span>
-                                                        <span class="pull-right text-success tran-price">Borrow</span>
+                                                        <?=($lt['request_type'] == 1) ? '<i class="ti-upload text-warning"></i>' : '<i class="ti-download text-primary"></i>'; ?>
+                                                        <span class="tran-text"><b><?=$lt['firstname']?> <?=$lt['lastname']?></b> <?=($lt['request_type'] == 1) ? '<span class="text-warning">borrowed</span>' : '<span class="text-primary">reserved</span>'; ?> <?=$lt['book_name']?></span>
+                                                        <?=($lt['request_status'] == 0) ? '<span class="pull-right text-wardning tran-price">Pending</span>' : (
+                                                            ($lt['request_status'] == 1) ? '<span class="pull-right text-success tran-price">Approve</span>' : (
+                                                                ($lt['request_status'] == 2) ? '<span class="pull-right text-danger tran-price">Decline</span>' : '<span class="pull-right text-primary tran-price">Returned</span>' // 3
+                                                            )
+                                                        )?>
                                                         <span class="pull-right text-muted"><?=date('M d, Y', strtotime($lt['created_at']))?></span>
                                                         <span class="clearfix"></span>
                                                     </li>
@@ -76,7 +80,7 @@
                                                     <span class="tran-text">No latest transactions at this time</span>
                                                     <span class="pull-right text-success tran-price">Empty</span>
                                                     <span class="pull-right text-muted"><?=date('M d, Y')?></span>
-                                                    <span class="clearfix"></span>
+                                                    <span class="clearfix"></span>                                                    
                                                 </li>
                                             <?php } ?>
 

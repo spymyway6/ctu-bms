@@ -198,10 +198,12 @@ class Admin_model extends CI_Model {
     }
 
     public function get_latest_transactions(){
-        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role')->from('issue_book a')->where('request_status', 0);
+        $this->db->select('a.*, b.id, b.accession_no, b.book_name, b.author, b.publish_date, b.quantity, b.unavailable, b.category, b.book_image, c.firstname, c.lastname, c.department, c.role, d.category_name')->from('issue_book a');
         $this->db->join('books b', 'b.id = a.book_id', 'left');
         $this->db->join('users c', 'c.id = a.user_id', 'left');
-        $this->db->limit(20);
+        $this->db->join('book_categories d', 'd.category_id = b.category', 'left');
+        $this->db->order_by('a.issue_id', 'desc');
+        $this->db->limit(12);
         return $this->db->get()->result_array();
     }
 
