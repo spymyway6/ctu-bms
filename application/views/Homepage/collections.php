@@ -15,7 +15,24 @@
     <section class="page-content school-collections">
         <div class="container">
             <div class="school-collections-container">
+                <div class="collection-filters">
+                    <form action="<?=base_url();?>/collections" method="GET">
+                        <input type="text" name="keywords" id="keywords" placeholder="Collection name, author, accession number, location..." value="<?=(isset($_GET['keywords'])) ? $_GET['keywords'] : ''?>">
+                        <select name="category" id="select_category">
+                            <?php if($categories){ ?>
+                                <option value="">All Category</option>
+                                <?php foreach($categories as $cat){ ?>
+                                    <option value="<?=$cat['category_id']; ?>" <?=(isset($_GET['category']) && $_GET['category'] == $cat['category_id']) ? 'selected' : ''?>><?=$cat['category_name']; ?></option>
+                                <?php } ?>
+                            <?php }else{ ?>
+                                <option value="">All Category</option>
+                            <?php } ?>
+                        </select>
+                        <button type="submit" class="search-button">Search</button>
+                    </form>
+                </div>
                 <div class="collecton-wrapper">
+                    <?php if($collections){ ?>
                     <ul>
                         <?php foreach($collections as $col){ ?>
                             <?php $available = $col['quantity'] - $col['unavailable']; ?>
@@ -41,6 +58,11 @@
                             </li>
                         <?php } ?>
                     </ul>
+                    <?php }else{ ?>
+                        <div class="alert alert-danger">
+                            <strong>Sorry!</strong> We coudn't find the collection that you are looking for.
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <!-- Modal -->

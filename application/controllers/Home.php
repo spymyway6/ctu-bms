@@ -71,6 +71,7 @@ class Home extends CI_Controller {
     public function collections(){
         $data['is_page'] = 'collections';
         $data['collections'] = $this->home_model->get_collections();
+        $data['categories'] = $this->admin_model->get_categories();
 		$this->load->view('Homepage/collections', $data);
     }
 

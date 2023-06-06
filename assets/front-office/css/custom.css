@@ -438,3 +438,33 @@ li.active.cn-dropdown-item.has-down ul.dropdown li a::before {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+.collection-filters form {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.collection-filters button {
+    background: #ff5722;
+    border: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: .2s;
+    cursor: pointer;
+    outline: 0;
+}
+.collection-filters button:hover {
+    background: #b23007;
+}
+.collection-filters form #keywords,
+.collection-filters form #select_category {
+    border: 1px solid #eee;
+    width: 50%;
+    font-size: 14px;
+    outline: 0;
+    padding: 15px 15px;
+}

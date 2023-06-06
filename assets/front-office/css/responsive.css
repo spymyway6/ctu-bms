@@ -4,6 +4,12 @@
     }
 }
 
+@media only screen and (max-width: 768px){
+    .more-info-wrapper .mi-content ul {
+        width: 100%;
+    }
+}
+
 @media only screen and (max-width: 767px){
     .classy-nav-container .classy-navbar .nav-brand {
         max-width: 220px;
@@ -14,5 +20,20 @@
 @media only screen and (max-width: 425px){
     .collecton-wrapper ul li {
         width: 100%;
+    }
+    .more-info-wrapper .mi-content {
+        flex-wrap: wrap;
+    }
+    .book-modal-img {
+        height: 20rem;
+    }
+    .book-modal-content h2 {
+        font-size: 22px;
+    }
+    .avail-item {
+        width: 100%;
+    }
+    .avail-lists {
+        flex-direction: column;
     }
 }
