@@ -139,3 +139,44 @@ function viewCollectionDetails(book_id){
         },
     });
 }
+
+function viewPersonnelDetails(id){
+    $('#personnelModal').modal('show');
+    var getDetails = $('#personnel-id-'+id).val();
+    var data = JSON.parse(getDetails);
+    $('#view-personnel-details').html(`
+        <div class="book-modal-img" style="background-image: url('${data.img}')"></div>
+        <div class="book-modal-content">
+            <h2>${data.name}</h2>
+            <p>One of the CTU's library personnel in the department of ${data.department} who lives in ${data.address}</p>
+            <!-- More Info -->
+            <div class="more-info-wrapper">
+                <div class="mi-header"><span><i class="fa fa-book"></i> Book Information</span></div>
+                <div class="mi-content">
+                    <ul style="width: 80%">
+                        <li>
+                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Personnel Name</span>
+                            <span class="details">${data.name}</span>
+                        </li>
+                        <li>
+                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Email</span>
+                            <span class="details">${data.email}</span>
+                        </li>
+                        <li>
+                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Address</span>
+                            <span class="details">${data.address}</span>
+                        </li>
+                        <li>
+                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Department</span>
+                            <span class="details">${data.department}</span>
+                        </li>
+                        <li>
+                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Edition</span>
+                            <span class="details">${data.edition}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `);
+}

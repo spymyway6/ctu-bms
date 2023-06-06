@@ -78,14 +78,81 @@
 
     <div class="sec_img4">
         <h1 class="animate-charcter" >CTU LIBRARY PERSONNEL</h1>
-    <div class="box4">				
-        <span style="--i:1;"><img src="<?=base_url();?>assets/front-office/img/bg-img/user1.jpg" alt=""></span>
-        <span style="--i:2;"><img src="<?=base_url();?>assets/front-office/img/bg-img/user2.jpg" alt=""></span>
-        <span style="--i:3;"><img src="<?=base_url();?>assets/front-office/img/bg-img/user3.jpg" alt=""></span>
-        <span style="--i:4;"><img src="<?=base_url();?>assets/front-office/img/bg-img/user5.jpg" alt=""></span>
-        <span style="--i:5;"><img src="<?=base_url();?>assets/front-office/img/bg-img/user6.jpg" alt=""></span>
-    </div>
-</div>	
+        <?php 
+            $personnel = array(
+                array(
+                    'id' => 1,
+                    'img' => base_url().'assets/front-office/img/bg-img/ctu-personnel/user1.jpg',
+                    'name' => 'Personnel 1',
+                    'email' => 'Personnel@yopmail.com',
+                    'address' => 'Liloan, Cebu',
+                    'department' => 'BSIT',
+                ),
+                array(
+                    'id' => 2,
+                    'img' => base_url().'assets/front-office/img/bg-img/ctu-personnel/user2.jpg',
+                    'name' => 'Blissy Sunit',
+                    'email' => 'blissy@gmail.com',
+                    'address' => 'Liloan, Cebu',
+                    'department' => 'BSIT',
+                ),
+                array(
+                    'id' => 3,
+                    'img' => base_url().'assets/front-office/img/bg-img/ctu-personnel/user3.jpg',
+                    'name' => 'Librarian Name',
+                    'email' => 'Librarian@yopmail.com',
+                    'address' => 'Basak Mandaue',
+                    'department' => 'BSIT',
+                ),
+                array(
+                    'id' => 4,
+                    'img' => base_url().'assets/front-office/img/bg-img/ctu-personnel/user4.jpg',
+                    'name' => 'John Cloyd S. Rosios',
+                    'email' => 'jcboy0923@gmail.com',
+                    'address' => 'Tabok-lamac, Yati, Lilo-an, Cebu',
+                    'department' => 'BSIT',
+                ),
+                array(
+                    'id' => 5,
+                    'img' => base_url().'assets/front-office/img/bg-img/ctu-personnel/user5.jpg',
+                    'name' => 'Mercedes Cepeda',
+                    'email' => 'Mercedes@gmail.com',
+                    'address' => 'Basak Mandaue City',
+                    'department' => 'BSIT',
+                ),
+                array(
+                    'id' => 6,
+                    'img' => base_url().'assets/front-office/img/bg-img/ctu-personnel/user6.jpg',
+                    'name' => 'Jillian Empis Pracuelles',
+                    'email' => 'Jillian@gmail.com',
+                    'address' => 'Tabok-lamac, Yati, Lilo-an, Cebu',
+                    'department' => 'BSIT',
+                ),
+            );
+        ?>
+
+        <div class="box4">
+            <?php foreach($personnel as $person){ ?>
+                <span style="--i:<?=$person['id'];?>" onclick="viewPersonnelDetails(<?=$person['id'];?>)">
+                    <textarea class="d-none" id="personnel-id-<?=$person['id'];?>"><?=json_encode($person);?></textarea>
+                    <img src="<?=$person['img'];?>" alt="<?=$person['name'];?>">
+                </span>
+            <?php } ?>
+        </div>
+
+        <!-- Modal -->
+        <div id="personnelModal" class="modal fade view-books-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-lg"> 
+                <div class="modal-content"> 
+                    <div class="modal-body" id="view-personnel-details"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button> 
+                    </div> 
+                </div> 
+            </div>
+        </div><!-- /.modal -->
+        <!-- Modals Here -->
+    </div>	
 
 	<!-- About Us Area End -->
 	

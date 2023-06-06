@@ -70,7 +70,7 @@
     height: 100%;
     transform-origin: center;
     transform-style: preserve-3d;
-    transform: rotateY(calc(var(--i) * 73deg)) translateZ(400px);
+    transform: rotateY(calc(var(--i) * 55deg)) translateZ(400px);
     -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,#0004);
 }
 .box4 span img {
