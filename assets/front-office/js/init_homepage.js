@@ -148,7 +148,7 @@ function viewPersonnelDetails(id){
         <div class="book-modal-img" style="background-image: url('${data.img}')"></div>
         <div class="book-modal-content">
             <h2>${data.name}</h2>
-            <p>One of the CTU's library personnel in the department of ${data.department} who lives in ${data.address}</p>
+            <p>${data.description}</p>
             <!-- More Info -->
             <div class="more-info-wrapper">
                 <div class="mi-header"><span><i class="fa fa-user"></i> Personnel Information</span></div>
@@ -159,16 +159,8 @@ function viewPersonnelDetails(id){
                             <span class="details">${data.name}</span>
                         </li>
                         <li>
-                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Email</span>
-                            <span class="details">${data.email}</span>
-                        </li>
-                        <li>
-                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Address</span>
-                            <span class="details">${data.address}</span>
-                        </li>
-                        <li>
-                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Department</span>
-                            <span class="details">${data.department}</span>
+                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Position</span>
+                            <span class="details">${data.position}</span>
                         </li>
                     </ul>
                 </div>
