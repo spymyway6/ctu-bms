@@ -1,6 +1,7 @@
 <?php 
     $my_user_id = $this->session->userdata('id'); 
-    $user_img = $this->session->userdata('pic');
+    $user_img = $this->student_model->get_my_profile($my_user_id)['pic'];
+    $firstname = $this->session->userdata('firstname');
 ?>
 <div class="topbar">
    <!-- LOGO -->
@@ -25,6 +26,7 @@
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true">
+                            <span class="profile-name"><?=$firstname;?></span>
                             <div class="top-prof-img">
                                 <img src="<?=($user_img) ? base_url().'assets/uploads/users/'.$user_img : base_url().'assets/uploads/default.png';?>" alt="Profile Image" style="border: 0;">
                             </div>

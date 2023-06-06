@@ -36,3 +36,22 @@
 .modal-content form .form-control[readonly] {
     background: #fff;
 }
+a.dropdown-toggle.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+span.profile-name {
+    margin-right: -8px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 11px;
+    background: #f05050;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 5px;
+}

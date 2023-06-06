@@ -74,7 +74,15 @@
 									</ul>
 								</li>
 								<li><a href="<?=base_url();?>">FAQs</a></li>
-								<li><a href="<?=base_url();?>login">Login</a></li>
+                                <?php if($this->session->userdata('id')){ ?>
+                                    <?php if($this->session->userdata('role')==1){ ?>
+                                        <li><a href="<?=base_url();?>admin/dashboard">My Dashboard</a></li>
+                                    <?php }else{ ?>
+                                        <li><a href="<?=base_url();?>student/dashboard">My Dashboard</a></li>
+                                    <?php } ?>
+                                <?php }else{ ?>
+                                    <li><a href="<?=base_url();?>login">Login</a></li>
+                                <?php } ?>
 							</ul>
 						</div>
 						<!-- Nav End -->

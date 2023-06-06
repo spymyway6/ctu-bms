@@ -41,7 +41,7 @@ button.abs-close {
     width: 135px;
     height: 135px;
     overflow: hidden;
-    background: #fff;
+    background: #8f9090;
     cursor: pointer;
     border: 2px solid #8f9090;
     margin: 0 auto;
@@ -98,6 +98,7 @@ button.abs-close {
     overflow: hidden;
     border: 2px solid#f05050;
     margin-top: 5px;
+    background: #f05050;
 }
 .post-img-disp {
     position: relative;

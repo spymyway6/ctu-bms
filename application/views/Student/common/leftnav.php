@@ -10,6 +10,9 @@
 
                 <li class="text-muted menu-title">Navigation </li>
                 <li>
+                    <a href="<?=base_url();?>" class="waves-effect" target="_blank"><i class="ti-world"></i> <span> Visit Homepage </span> </a>
+                </li>
+                <li>
                     <a href="<?=base_url();?>student/dashboard" class="waves-effect <?=($is_page=='student/dashboard') ? 'active' : ''; ?>"><i class="ti-dashboard"></i> <span> Dashboard </span> </a>
                 </li>
                 <li>
