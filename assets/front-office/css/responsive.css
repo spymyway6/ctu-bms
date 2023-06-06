@@ -1,6 +1,18 @@
+@media only screen and (max-width: 1024px){
+    .collecton-wrapper ul li {
+        width: 50%;
+    }
+}
+
 @media only screen and (max-width: 767px){
     .classy-nav-container .classy-navbar .nav-brand {
         max-width: 220px;
         margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .collecton-wrapper ul li {
+        width: 100%;
     }
 }

@@ -10,7 +10,7 @@
 							<h2 data-animation="bounceInDown" data-delay="900ms">Welcome to! CTU-Consolacion Library.</h2>
 							<p data-animation="bounceInDown" data-delay="500ms">Opens at: 8:00 A.M | Closes at: 5:00 P.M</p>
 							<div class="hero-btn-group" data-animation="bounceInUp" data-delay="900ms">
-								<a href="#" class="btn alime-btn mb-3 mb-sm-0 mr-4">Login</a>
+								<a href="<?=base_url();?>login" class="btn alime-btn mb-3 mb-sm-0 mr-4">Login</a>
 							</div>
 						</div>
 					</div>
@@ -19,9 +19,9 @@
 		</div>
 	</div>
 
-<div class="libraryinsight">
-	<h1 class="wow fadeInUp" data-wow-delay="100ms">LIBRARY INSIGHT</h1>
-</div>
+    <div class="libraryinsight">
+        <h1 class="wow fadeInUp" data-wow-delay="100ms">LIBRARY INSIGHT</h1>
+    </div>
 
 	<div class="welcome-slides owl-carousel">
 		<!-- Single Slide -->
@@ -33,9 +33,6 @@
 						<div class="welcome-text">
 							<h2 data-animation="bounceInDown" data-delay="900ms">Borrow Books <br>Online</h2>
 							<p data-animation="bounceInDown" data-delay="500ms">Opens at: 8:00 A.M | Closes at: 5:00 P.M</p>
-							<div class="hero-btn-group" data-animation="bounceInUp" data-delay="900ms">
-								<a href="#" class="btn alime-btn mb-3 mb-sm-0 mr-4">Login</a>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -51,9 +48,6 @@
 						<div class="welcome-text">
 							<h2 data-animation="bounceInUp" data-delay="100ms">Opens at: 8:00 A.M <br>Closes at: 5:00 P.M</h2>
 							<p data-animation="bounceInUp" data-delay="500ms">Start borrowing books now.</p>
-							<div class="hero-btn-group" data-animation="bounceInUp" data-delay="900ms">
-								<a href="#" class="btn alime-btn mb-3 mb-sm-0 mr-4">Login</a>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -69,9 +63,6 @@
 						<div class="welcome-text">
 							<h2 data-animation="bounceInUp" data-delay="100ms">Borrow Books <br>Online</h2>
 							<p data-animation="bounceInUp" data-delay="500ms">Hassle-free when borrowing of books. It's now online.</p>
-							<div class="hero-btn-group" data-animation="bounceInUp" data-delay="900ms">
-								<a href="#" class="btn alime-btn mb-3 mb-sm-0 mr-4">Login</a>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -79,10 +70,7 @@
 		</div>
 	</div>
 
-<div class="vmgo">
-	<h1 class="wow fadeInUp" data-wow-delay="100ms">VMGO</h1>
-</div>
-
-
-
+    <div class="vmgo">
+        <h1 class="wow fadeInUp" data-wow-delay="100ms">VMGO</h1>
+    </div>
 </section>

@@ -68,4 +68,27 @@ class Home extends CI_Controller {
     }
     /* Close Pages */
 
+    public function collections(){
+        $data['is_page'] = 'collections';
+        $data['collections'] = $this->home_model->get_collections();
+		$this->load->view('Homepage/collections', $data);
+    }
+
+    public function get_collection_info(){
+        if($this->input->post()){
+            $data = $this->home_model->get_collection_info_model($this->input->post('book_id'));
+        }
+        echo json_encode(
+            array(
+                'status' => true,
+                'data' => $data,
+                'dates' => array(
+                    'publish_date' => date('M d, Y', strtotime($data['publish_date'])),
+                    'copyright_date' => date('M d, Y', strtotime($data['copyright_date'])),
+                    'created_at' => date('M d, Y', strtotime($data['created_at'])),
+                ),
+                'message' => 'Collection fetched successfully'
+            )
+        );
+	}
 }

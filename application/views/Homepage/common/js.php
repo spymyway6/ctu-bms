@@ -8,3 +8,6 @@
 <script src="<?=base_url();?>assets/front-office/js/alime.bundle.js"></script>
 <!-- Active -->
 <script src="<?=base_url();?>assets/front-office/js/default-assets/active.js"></script>
+
+<script src="<?=base_url();?>assets/front-office/js/init_homepage.js"></script>
+

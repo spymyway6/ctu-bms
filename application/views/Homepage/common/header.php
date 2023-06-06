@@ -51,7 +51,7 @@
 								<li class="<?=$is_page == "homepage" ? 'active' : ''?>"><a href="<?=base_url();?>">Home</a></li>
 								<li><a href="javascript:;">Library Collection</a>
 									<ul class="dropdown">
-										<li><a href="javascript:;">Collection</a></li>
+										<li><a href="<?=base_url();?>collections">Collections</a></li>
 										<li><a href="javascript:;">New Aquisition</a></li>
 									</ul>
 								</li>
