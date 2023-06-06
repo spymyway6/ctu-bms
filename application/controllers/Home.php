@@ -66,6 +66,12 @@ class Home extends CI_Controller {
         $data['page'] = $this->home_model->get_page_data(9);
 		$this->load->view('Homepage/internet_access', $data);
     }
+
+    public function faqs(){
+        $data['is_page'] = 'faqs';
+        $data['page'] = $this->home_model->get_page_data(11);
+		$this->load->view('Homepage/faqs', $data);
+    }
     /* Close Pages */
 
     public function collections(){

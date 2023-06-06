@@ -151,7 +151,7 @@ function viewPersonnelDetails(id){
             <p>One of the CTU's library personnel in the department of ${data.department} who lives in ${data.address}</p>
             <!-- More Info -->
             <div class="more-info-wrapper">
-                <div class="mi-header"><span><i class="fa fa-book"></i> Book Information</span></div>
+                <div class="mi-header"><span><i class="fa fa-user"></i> Personnel Information</span></div>
                 <div class="mi-content">
                     <ul style="width: 80%">
                         <li>
@@ -169,10 +169,6 @@ function viewPersonnelDetails(id){
                         <li>
                             <span class="mi-title"><i class="fa fa-bookmark-o"></i> Department</span>
                             <span class="details">${data.department}</span>
-                        </li>
-                        <li>
-                            <span class="mi-title"><i class="fa fa-bookmark-o"></i> Edition</span>
-                            <span class="details">${data.edition}</span>
                         </li>
                     </ul>
                 </div>

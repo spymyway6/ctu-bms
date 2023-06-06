@@ -55,25 +55,25 @@
 										<li><a href="<?=base_url();?>new-aquisition">New Aquisition</a></li>
 									</ul>
 								</li>
-								<li class="<?=$is_page == "general_rules" ? 'active' : ''?>"><a href="javascript:;">Library Policies</a>
+								<li class="<?=($is_page == "general_rules" || $is_page == "borrowing_policy") ? 'active' : ''?>"><a href="javascript:;">Library Policies</a>
 									<ul class="dropdown">
-										<li><a href="<?=base_url();?>/general-rules">General Rules</a></li>
-										<li><a href="<?=base_url();?>/borrowing-policy">Borrowing Policy</a></li>
+										<li><a href="<?=base_url();?>general-rules">General Rules</a></li>
+										<li><a href="<?=base_url();?>borrowing-policy">Borrowing Policy</a></li>
 									</ul>
 								</li>
-								<li><a href="<?=$is_page == "circulation_services" ? 'active' : ''?>">Library Services</a>
+								<li class="<?=($is_page == "circulation_services" || $is_page == "library_orientation" || $is_page == "document_delivery" || $is_page == "inter_library" || $is_page == "information_services" || $is_page == "printing_services" || $is_page == "internet_access") ? 'active' : ''?>"><a href="#">Library Services</a>
 									<ul class="dropdown">
-										<li><a href="<?=base_url();?>/circulation-services">Circulation Service</a></li>
-										<li><a href="<?=base_url();?>/library-orientation">Library Orientation and Instruction</a></li>
-										<li><a href="<?=base_url();?>/document-delivery">Document Delivery (DD)</a></li>
-										<li><a href="<?=base_url();?>/inter-library">Inter-Library/Referral Services</a></li>
-										<li><a href="<?=base_url();?>/information-services">REFERENCE & INFORMATION Services</a></li>
-										<li><a href="<?=base_url();?>/printing-services">Scanning, Photocopy and Printing Services</a></li>
-										<li><a href="<?=base_url();?>/internet-access">Internet Access Services</a></li>
+										<li><a href="<?=base_url();?>circulation-services">Circulation Service</a></li>
+										<li><a href="<?=base_url();?>library-orientation">Library Orientation and Instruction</a></li>
+										<li><a href="<?=base_url();?>document-delivery">Document Delivery (DD)</a></li>
+										<li><a href="<?=base_url();?>inter-library">Inter-Library/Referral Services</a></li>
+										<li><a href="<?=base_url();?>information-services">REFERENCE & INFORMATION Services</a></li>
+										<li><a href="<?=base_url();?>printing-services">Scanning, Photocopy and Printing Services</a></li>
+										<li><a href="<?=base_url();?>internet-access">Internet Access Services</a></li>
 										<li><a href="javascript:;">Research Extension</a></li>
 									</ul>
 								</li>
-								<li><a href="<?=base_url();?>">FAQs</a></li>
+								<li class="<?=$is_page == "faqs" ? 'active' : ''?>"><a href="<?=base_url();?>faqs">FAQs</a></li>
                                 <?php if($this->session->userdata('id')){ ?>
                                     <?php if($this->session->userdata('role')==1){ ?>
                                         <li><a href="<?=base_url();?>admin/dashboard">My Dashboard</a></li>
