@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 06, 2023 at 02:30 AM
+-- Generation Time: Jun 06, 2023 at 02:45 AM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -155,7 +155,8 @@ INSERT INTO `pages` (`id`, `page_name`, `page_content`, `slug`, `created_at`, `u
 (6, 'Inter-Library / Referral Services', 'Lorem', 'inter-library', '2023-06-04 14:39:47', '2023-06-04 15:29:43'),
 (7, 'Reference and Information Services', 'Lorem', 'information-services', '2023-06-04 14:39:47', '2023-06-04 15:30:00'),
 (8, 'Scanning, Photocopy, and Printing Services', 'Lorem', 'printing-services', '2023-06-04 14:39:47', '2023-06-04 15:30:07'),
-(9, 'Internet Access Services', 'Lorem', 'internet-access', '2023-06-04 14:39:47', '2023-06-04 15:30:11');
+(9, 'Internet Access Services', 'Lorem', 'internet-access', '2023-06-04 14:39:47', '2023-06-04 15:30:11'),
+(11, 'FAQs', 'Content', 'faqs', '2023-06-06 02:42:24', '2023-06-06 02:42:24');
 
 -- --------------------------------------------------------
 
@@ -251,7 +252,7 @@ ALTER TABLE `issue_book`
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
