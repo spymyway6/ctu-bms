@@ -63,3 +63,4 @@ $route['information-services']  = 'home/information_services';
 $route['printing-services']  = 'home/printing_services';
 $route['internet-access']  = 'home/internet_access';
 $route['collections']  = 'home/collections';
+$route['new-aquisition']  = 'home/new_aquisition';

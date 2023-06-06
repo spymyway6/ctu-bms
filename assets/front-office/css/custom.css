@@ -73,16 +73,20 @@
     transform: rotateY(calc(var(--i) * 73deg)) translateZ(400px);
     -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,#0004);
 }
-.box4 span img
-{
+.box4 span img {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: auto;
     height: 100%;
-    
+    border-radius: 10px;
+    border: 2px solid #eee;
+    cursor: pointer;
+    transition: .2s;
 }
-
+.box4 span img:hover {
+    border: 2px solid #ff7070;
+}
 .sec_img4
 {
     display: flex;

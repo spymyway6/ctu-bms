@@ -49,10 +49,10 @@
 						<div class="classynav">
 							<ul id="nav">
 								<li class="<?=$is_page == "homepage" ? 'active' : ''?>"><a href="<?=base_url();?>">Home</a></li>
-								<li><a href="javascript:;">Library Collection</a>
+								<li class="<?=($is_page == "collections" || $is_page == "new_aquisition") ? 'active' : ''?>"><a href="javascript:;">Library Collection</a>
 									<ul class="dropdown">
 										<li><a href="<?=base_url();?>collections">Collections</a></li>
-										<li><a href="javascript:;">New Aquisition</a></li>
+										<li><a href="<?=base_url();?>new-aquisition">New Aquisition</a></li>
 									</ul>
 								</li>
 								<li class="<?=$is_page == "general_rules" ? 'active' : ''?>"><a href="javascript:;">Library Policies</a>

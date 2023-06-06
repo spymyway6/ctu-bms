@@ -75,6 +75,13 @@ class Home extends CI_Controller {
 		$this->load->view('Homepage/collections', $data);
     }
 
+    public function new_aquisition(){
+        $data['is_page'] = 'new_aquisition';
+        $data['collections'] = $this->home_model->get_new_aquisition();
+        $data['categories'] = $this->admin_model->get_categories();
+		$this->load->view('Homepage/new_aquisition', $data);
+    }
+
     public function get_collection_info(){
         if($this->input->post()){
             $data = $this->home_model->get_collection_info_model($this->input->post('book_id'));
